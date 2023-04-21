@@ -1,0 +1,34 @@
+@import '@fontsource/roboto/index.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  -webkit-font-smoothing: antialiased;
+}
+
+@layer utilities {
+  /* Class is used for development purposes only */
+  .dev {
+    @apply outline outline-dashed outline-1 outline-primary;
+  }
+  .dev1 {
+    @apply outline outline-dashed outline-1 outline-secondary;
+  }
+  .dev2 {
+    @apply outline outline-dashed outline-1 outline-accent;
+  }
+}
+
+@layer base {
+  input[type='number']::-webkit-inner-spin-button,
+  input[type='number']::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+}
+
+input[type='number'] {
+  -moz-appearance: textfield;
+}
