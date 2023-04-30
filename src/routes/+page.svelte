@@ -47,7 +47,7 @@
       .delete(14)
       .type("Welcome", { delay: 250 })
       .type("...", { delay: 500 })
-      .delete(4)
+      .delete(3)
       .type(" to <em><strong>IndecisiveBG?</strong></em>", { delay: 250 })
       .delete(3)
       .go();
