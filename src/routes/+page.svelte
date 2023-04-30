@@ -1,16 +1,62 @@
 <script lang="ts">
+  import { afterNavigate } from "$app/navigation";
+  import TypeIt from "typeit";
+
+  let pTag1: HTMLHeadingElement;
+  let pTag2: HTMLHeadingElement;
+
+  afterNavigate(({ from }) => {
+    if (from !== null) {
+      pTag1.innerHTML = "Welcome to <em>Indecisive</em>";
+      return;
+    }
+    const tHead2 = new TypeIt(pTag2, {
+      afterComplete: () => tHead2.destroy(),
+      speed: 70,
+    })
+      .type("This is the place where you lose <i>brain cells</i>", {
+        delay: 250,
+      })
+      .delete(11)
+      .type("<em>stress</em>", { delay: 250 })
+      .type("...", { delay: 500 })
+      .break()
+      .type(
+        "The place where you get to raid with top-ranking <i>pedophiles</i>",
+        {
+          delay: 250,
+        }
+      )
+      .delete(10)
+      .type("<em>players</em>...")
+      .break()
+      .type("Try not to get <i>cancer</i>", { delay: 250 })
+      .delete(6)
+      .type("carried away, because you will get <i>aids</i>", { delay: 250 })
+      .delete(4)
+      .type("<em>addicted</em>...");
+
+    const tHead1 = new TypeIt(pTag1, {
+      afterComplete: () => {
+        tHead1.destroy();
+        tHead2.go();
+      },
+      speed: 70,
+    })
+      .type("Hey there O/", { delay: 500 })
+      .delete(14)
+      .type("Welcome", { delay: 250 })
+      .type("...", { delay: 500 })
+      .delete(4)
+      .type(" to <em><strong>IndecisiveBG?</strong></em>", { delay: 250 })
+      .delete(3)
+      .go();
+  });
 </script>
 
-<section class="flex h-screen flex-col items-center justify-center relative">
-  <div
-    class="flex flex-col md:flex-row items-center justify-center space-y-8 space-x-8 text-center bg-black/80 p-8 rounded-xl"
-  >
-    <img src="/logo.png" alt="logo" class="h-80 object-cover" />
-    <div class="form-control items-center space-y-12">
-      <h1 class="text-5xl">Welcome to IndecisiveBG</h1>
-      <a href="/application" class="btn btn-lg font-extrabold btn-secondary"
-        >Apply or Die</a
-      >
-    </div>
-  </div>
+<section
+  class="flex select-none flex-col items-center justify-center gap-40 text-center"
+>
+  <p class="text-3xl md:text-4xl [&_em]:text-yellow-400" bind:this={pTag1} />
+  <p class="text-3xl md:text-4xl [&_em]:text-yellow-400" bind:this={pTag2} />
 </section>

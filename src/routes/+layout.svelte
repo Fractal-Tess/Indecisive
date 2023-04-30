@@ -1,12 +1,33 @@
 <script lang="ts">
-  import '$styles';
+  import "$styles";
+  import Header from "$lib/components/Header.svelte";
+  import { env } from "$env/dynamic/public";
 </script>
 
+<svelte:head>
+  <meta name="description" content="Community/Guild web portal." />
+
+  <meta itemprop="name" content="Indecisive" />
+  <meta itemprop="description" content="Community/Guild web portal." />
+  <meta itemprop="image" content={`${env.PUBLIC_ORIGIN_URL}/logo.png`} />
+
+  <meta property="og:url" content="https://Indecisive.xyz" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Indecisive" />
+  <meta property="og:description" content="Community/Guild web portal." />
+  <meta property="og:image" content={`${env.PUBLIC_ORIGIN_URL}/logo.png`} />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Indecisive" />
+  <meta name="twitter:description" content="Community/Guild web portal." />
+  <meta name="twitter:image" content={`${env.PUBLIC_ORIGIN_URL}/logo.png`} />
+</svelte:head>
+
 <div
-  class=" h-screen w-screen -z-50 bg-ind_bg bg-cover bg-fixed bg-center fixed"
-/>
-<div class="flex min-h-screen flex-col bg-transparent">
-  <main class="flex-1">
+  class="flex min-h-screen flex-col bg-fixed heropattern-topography-white/10"
+>
+  <Header />
+  <main class="grid flex-1">
     <slot />
   </main>
 </div>

@@ -1,5 +1,5 @@
-const daisyui = require('daisyui');
 const defaultTheme = require('tailwindcss/defaultTheme');
+const heropatterns = require("tailwindcss-hero-patterns/src/patterns");
 
 /** @type {import('tailwindcss').Config} */
 const config = {
@@ -14,7 +14,11 @@ const config = {
       backgroundImage: {
         ind_bg: "url('/bg.jpg')"
       }
-    }
+    },
+    heroPatternsOpacities: ["10"],
+    heroPatterns: {
+      topography: heropatterns.topography,
+    },
   },
 
   daisyui: {
@@ -22,7 +26,7 @@ const config = {
       {
         dark: {
           ...require('daisyui/src/colors/themes')['[data-theme=black]'],
-          primary: '#45B1E8',
+          primary: '#facc15',
           secondary: '#E8456B',
           accent: '#3AE8C4',
           "--btn-text-case": "none",
@@ -32,7 +36,7 @@ const config = {
       }
     ]
   },
-  plugins: [daisyui]
+  plugins: [require('daisyui'), require('tailwindcss-hero-patterns')]
 };
 
 module.exports = config;

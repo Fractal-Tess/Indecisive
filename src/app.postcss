@@ -1,4 +1,4 @@
-@import '@fontsource/roboto/index.css';
+@import "@fontsource/roboto/index.css";
 
 @tailwind base;
 @tailwind components;
@@ -19,16 +19,19 @@ html {
   .dev2 {
     @apply outline outline-dashed outline-1 outline-accent;
   }
+  .devb {
+    @apply border-[1px];
+  }
 }
 
 @layer base {
-  input[type='number']::-webkit-inner-spin-button,
-  input[type='number']::-webkit-outer-spin-button {
+  input[type="number"]::-webkit-inner-spin-button,
+  input[type="number"]::-webkit-outer-spin-button {
     -webkit-appearance: none;
     margin: 0;
   }
 }
 
-input[type='number'] {
+input[type="number"] {
   -moz-appearance: textfield;
 }
