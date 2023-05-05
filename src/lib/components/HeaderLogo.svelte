@@ -1,6 +1,8 @@
 <li class="flex scale-100 items-center justify-center md:scale-150">
   <a href="/" class="relative flex translate-y-6 items-center justify-center">
     <img
+      id="logo"
+      style={`filter:drop-shadow(0 0 10px hsl(var(--p)));`}
       src="/logo.png"
       alt="Indecisive logo"
       class="absolute h-full bg-cover md:h-3/4" />
