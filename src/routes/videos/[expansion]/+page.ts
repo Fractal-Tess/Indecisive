@@ -1,6 +1,6 @@
-import type { PageLoad } from "./$types";
-import { env } from "$env/dynamic/public";
-import Pocketbase from "pocketbase";
+import type { PageLoad } from './$types';
+import { env } from '$env/dynamic/public';
+import Pocketbase from 'pocketbase';
 
 type Item = {
   collectionId: string;
@@ -17,13 +17,13 @@ type Item = {
 export const load = (async ({ params, url }) => {
   const pb = new Pocketbase(env.PUBLIC_POCKETBASE_URL);
   const videoCollection = await pb
-    .collection("video_collection")
+    .collection('video_collection')
     .getFullList<Item>({
-      filter: `expansion.name ='${params.expansion}'`,
+      filter: `expansion.name ='${params.expansion}'`
     });
 
   return {
     videoCollection,
-    url,
+    url
   };
 }) satisfies PageLoad;

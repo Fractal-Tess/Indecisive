@@ -1,7 +1,7 @@
 <script lang="ts">
-  import type { PageData } from "./$types";
-  import Image from "$lib/components/Image.svelte";
-  import { env } from "$env/dynamic/public";
+  import type { PageData } from './$types';
+  import Image from '$lib/components/Image.svelte';
+  import { env } from '$env/dynamic/public';
   export let data: PageData;
 </script>
 
@@ -10,8 +10,7 @@
 </svelte:head>
 
 <section
-  class="flex h-full items-center justify-center overflow-hidden text-2xl font-extrabold text-white"
->
+  class="flex h-full items-center justify-center overflow-hidden text-2xl font-extrabold text-white">
   <ul class="flex flex-col gap-12 md:flex-row">
     {#each data.expansions as expansion}
       {@const src = `${env.PUBLIC_POCKETBASE_URL}/api/files/${expansion.collectionId}/${expansion.id}/${expansion.thumbnail}?thumb=500x282`}

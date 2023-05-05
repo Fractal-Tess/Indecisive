@@ -1,5 +1,5 @@
 const defaultTheme = require('tailwindcss/defaultTheme');
-const heropatterns = require("tailwindcss-hero-patterns/src/patterns");
+const heropatterns = require('tailwindcss-hero-patterns/src/patterns');
 
 /** @type {import('tailwindcss').Config} */
 const config = {
@@ -15,10 +15,10 @@ const config = {
         ind_bg: "url('/bg.jpg')"
       }
     },
-    heroPatternsOpacities: ["10"],
+    heroPatternsOpacities: ['10'],
     heroPatterns: {
-      topography: heropatterns.topography,
-    },
+      topography: heropatterns.topography
+    }
   },
 
   daisyui: {
@@ -29,7 +29,7 @@ const config = {
           primary: '#facc15',
           secondary: '#E8456B',
           accent: '#3AE8C4',
-          "--btn-text-case": "none",
+          '--btn-text-case': 'none',
           '--rounded-box': '0.2rem',
           '--rounded-btn': '0.2rem'
         }

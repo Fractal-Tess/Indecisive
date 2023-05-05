@@ -3,8 +3,7 @@
     <img
       src="/logo.png"
       alt="Indecisive logo"
-      class="absolute h-full bg-cover md:h-3/4"
-    />
+      class="absolute h-full bg-cover md:h-3/4" />
     <img src="/logo_bg.svg" alt="" class="h-20" />
   </a>
 </li>

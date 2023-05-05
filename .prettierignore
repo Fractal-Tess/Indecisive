@@ -1,0 +1,27 @@
+# Env
+.env
+.env.*
+
+# Build dirs
+build
+target
+storybook-static
+dist
+
+# Cache
+.svelte-kit
+
+# Ignore files for PNPM, NPM and YARN
+pnpm-lock.yaml
+package-lock.json
+yarn.lock
+
+node_modules
+
+# Other
+
+# Allow
+!tailwind.config.cjs
+!.storybook
+
+packages/consumet.ts

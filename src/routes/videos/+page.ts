@@ -1,6 +1,6 @@
-import type { PageLoad } from "./$types";
-import { env } from "$env/dynamic/public";
-import Pocketbase from "pocketbase";
+import type { PageLoad } from './$types';
+import { env } from '$env/dynamic/public';
+import Pocketbase from 'pocketbase';
 
 type Item = {
   collectionId: string;
@@ -15,8 +15,8 @@ type Item = {
 
 export const load = (async () => {
   const pb = new Pocketbase(env.PUBLIC_POCKETBASE_URL);
-  const expansions = await pb.collection("expansion").getFullList<Item>();
+  const expansions = await pb.collection('expansion').getFullList<Item>();
   return {
-    expansions,
+    expansions
   };
 }) satisfies PageLoad;

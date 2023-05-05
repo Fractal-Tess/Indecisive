@@ -1,7 +1,7 @@
 <script lang="ts">
-  import "$styles";
-  import Header from "$lib/components/Header.svelte";
-  import { env } from "$env/dynamic/public";
+  import '$styles';
+  import Header from '$lib/components/Header.svelte';
+  import { env } from '$env/dynamic/public';
 </script>
 
 <svelte:head>
@@ -24,8 +24,7 @@
 </svelte:head>
 
 <div
-  class="flex min-h-screen flex-col bg-fixed heropattern-topography-white/10"
->
+  class="flex min-h-screen flex-col bg-fixed heropattern-topography-white/10">
   <Header />
   <main class="grid flex-1">
     <slot />
