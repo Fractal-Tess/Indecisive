@@ -1,5 +1,6 @@
 <script lang="ts">
   import { afterNavigate } from '$app/navigation';
+  import { onDestroy } from 'svelte';
   import TypeIt from 'typeit';
 
   let pTag1: HTMLHeadingElement;
@@ -48,6 +49,11 @@
       .type(' to <em><strong>IndecisiveBG?</strong></em>', { delay: 250 })
       .delete(3)
       .go();
+
+    onDestroy(() => {
+      typeHead1.destroy();
+      typeHead2.destroy();
+    });
   });
 </script>
 

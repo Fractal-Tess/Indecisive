@@ -9,19 +9,20 @@
     <Logo class={'h-full object-cover'} />
   </a>
 
-  <ul class="navbar justify-end gap-4 whitespace-nowrap md:gap-8 md:text-lg">
+  <ul
+    class="navbar justify-end gap-4 whitespace-nowrap font-bold [&_a]:link-primary md:gap-8">
     <li>
-      <a href="/videos" class="link-primary">Videos</a>
+      <a href="/videos">Videos</a>
     </li>
     <li>
-      <a href="/application" class="link-primary">Apply</a>
+      <a href="/application">Application</a>
     </li>
     <li>
-      <a href="/about" class="link-primary">About us</a>
+      <a href="/about">About us</a>
     </li>
 
     <li>
-      <a href="/contact" class="link-primary">Contact</a>
+      <a href="/contact">Contact</a>
     </li>
   </ul>
 </header>

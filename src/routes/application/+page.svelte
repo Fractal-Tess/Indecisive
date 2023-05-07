@@ -26,8 +26,8 @@
   <title>Application</title>
 </svelte:head>
 
-<section class="grid place-items-center py-8">
-  <ul class="steps">
+<section class="form-control items-center justify-between">
+  <ul class="steps mb-4">
     <li class="step-primary step duration-500">Disclaimer</li>
     <li class:step-primary={page >= 1} class="step duration-500">
       Wanted Classes
@@ -44,28 +44,13 @@
     <section
       class="max-w-sm text-center md:max-w-md lg:max-w-lg [&>h1]:text-2xl md:[&>h1]:text-3xl">
       {@html data.disclaimerContent}
-      <div class="mt-8 flex gap-4">
-        <button
-          on:click={() => {
-            page = Page.WANTED_CLASSES_PAGE;
-          }}
-          class="btn-outline btn-primary btn flex-1">Proceed</button>
-        <a href="/" class="btn-outline btn-primary btn flex-1">Cancel</a>
-      </div>
     </section>
   {:else if page === Page.WANTED_CLASSES_PAGE}
     <section
       class="max-w-sm py-8 md:max-w-md lg:max-w-lg
-      [&>h1>strong]:block [&>h1]:text-2xl md:[&>h1]:text-3xl [&_p]:flex [&_p]:items-center [&_p]:justify-center [&_strong]:flex">
+      [&>h1>strong]:block [&>h1]:text-2xl md:[&>h1]:text-3xl
+      [&_img]:h-10 [&_img]:w-10 [&_p]:flex [&_p]:items-center [&_p]:justify-center [&_strong]:flex">
       {@html data.wantedContent}
-      <div class="mt-8 flex gap-4">
-        <button
-          on:click={() => {
-            page = Page.SIGNUP_PAGE;
-          }}
-          class="btn-outline btn-primary btn flex-1">Proceed</button>
-        <a href="/" class="btn-outline btn-primary btn flex-1">Cancel</a>
-      </div>
     </section>
   {:else if page === Page.SIGNUP_PAGE}
     <div
@@ -200,6 +185,16 @@
       <h1 class="min-w-max text-center text-3xl text-primary md:text-5xl">
         Your application was sent successfully!
       </h1>
+    </div>
+  {/if}
+  {#if page <= 2}
+    <div class="mt-8 flex gap-x-4">
+      <button
+        on:click={() => {
+          page += 1;
+        }}
+        class="btn-outline btn-primary btn flex-1">Proceed</button>
+      <a href="/" class="btn-outline btn-primary btn flex-1">Cancel</a>
     </div>
   {/if}
 </section>

@@ -26,7 +26,7 @@
 <div
   class="flex min-h-screen flex-col bg-fixed heropattern-topography-white/10">
   <Header />
-  <main class="grid flex-1">
+  <main class="grid flex-1 px-2 py-8">
     <slot />
   </main>
 </div>
