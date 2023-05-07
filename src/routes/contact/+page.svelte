@@ -4,9 +4,8 @@
   export let data: PageData;
 </script>
 
-<article
-  class="grid place-items-center text-xl md:text-2xl [&>section>h1]:text-2xl">
-  <section class="max-w-xs md:max-w-md lg:max-w-lg">
+<article class="grid place-items-center px-4 text-xl md:text-2xl">
+  <section class="sm:max-sm:max-w-xs lg:max-w-lg [&_h1]:text-3xl">
     {@html data.content}
   </section>
 </article>
