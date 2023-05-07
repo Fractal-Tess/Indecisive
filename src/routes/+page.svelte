@@ -21,12 +21,9 @@
       .type('<em>stress</em>', { delay: 250 })
       .type('...', { delay: 500 })
       .break()
-      .type(
-        'The place where you get to raid with top-ranking <i>pedophiles</i>',
-        {
-          delay: 250
-        }
-      )
+      .type('The place where you get to raid with top-ranking <i>pepegas</i>', {
+        delay: 250
+      })
       .delete(10)
       .type('<em>players</em>...')
       .break()
