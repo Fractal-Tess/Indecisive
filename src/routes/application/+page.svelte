@@ -15,6 +15,7 @@
   }
 
   let page = Page.DISCLAIMER_PAGE;
+
   $: {
     if (form?.success) {
       page = Page.SUCCESSFUL_PAGE;
@@ -186,9 +187,15 @@
       </form>
     </div>
   {:else if page === Page.SUCCESSFUL_PAGE}
-    <div class="flex items-center justify-center">
-      <h1 class="min-w-max text-center text-3xl text-primary md:text-5xl">
-        Your application was sent successfully!
+    <div class="grid flex-1 place-items-center">
+      <h1 class="max-w-5xl text-center text-3xl text-primary md:text-3xl">
+        Your application was submitted successfully!
+        <br />
+        <br />
+        Thank you for applying, we will try to get back to you in a timely manner.
+        <br />
+        <br />
+        GL/HF and take care &lt;3.
       </h1>
     </div>
   {/if}
