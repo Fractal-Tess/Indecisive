@@ -24,11 +24,4 @@
       <a href="/contact" class="link-primary">Contact</a>
     </li>
   </ul>
-
-  <a
-    class="absolute right-4 top-1/2 hidden -translate-y-1/2 md:block"
-    href="https://github.com/Fractal-Tess/Indecisive"
-    target="_blank">
-    <Fa icon={faGithub} />
-  </a>
 </header>

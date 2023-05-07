@@ -16,7 +16,7 @@ export const load = (async () => {
   const pb = new Pocketbase(env.PUBLIC_POCKETBASE_URL);
   const text = await pb
     .collection('text')
-    .getFirstListItem<Item>("unit='about_page'");
+    .getFirstListItem<Item>("unit='contact_page'");
   return {
     content: text.content
   };
