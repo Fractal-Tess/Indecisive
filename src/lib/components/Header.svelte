@@ -1,6 +1,4 @@
 <script lang="ts">
-  import Fa from 'svelte-fa';
-  import { faGithub } from '@fortawesome/free-brands-svg-icons';
   import Logo from '$lib/components/Logo.svelte';
 </script>
 

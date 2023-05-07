@@ -131,11 +131,16 @@
         </label>
         <!-- svelte-ignore a11y-label-has-associated-control -->
         <label class="form-control">
-          <span class="label-text"> What is your raiding experience?</span>
+          <span class="label-text">
+            What is your raiding experience?
+            <br />
+            Any retail raid logs?
+          </span>
           <textarea
             name="experience"
             class="textarea-bordered textarea h-24 w-full placeholder:opacity-30" />
         </label>
+        <!-- svelte-ignore a11y-label-has-associated-control -->
 
         <!-- svelte-ignore a11y-label-has-associated-control -->
         <label class="form-control">
@@ -171,7 +176,7 @@
             >Are you able to attend at least 90% of our raid days?
           </span>
           <textarea
-            name="join_reason"
+            name="able_to_attend_raid_days"
             placeholder="Yes/No/Reason"
             class="textarea-bordered textarea h-24 w-full placeholder:opacity-30" />
         </label>
