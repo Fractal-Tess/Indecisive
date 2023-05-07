@@ -14,7 +14,7 @@
     SUCCESSFUL_PAGE
   }
 
-  let page = Page.DISCLAIMER_PAGE;
+  let page = Page.WANTED_CLASSES_PAGE;
   $: {
     if (form?.success) {
       page = Page.SUCCESSFUL_PAGE;
@@ -47,9 +47,9 @@
     </section>
   {:else if page === Page.WANTED_CLASSES_PAGE}
     <section
-      class="max-w-sm py-8 md:max-w-md lg:max-w-lg
-      [&>h1>strong]:block [&>h1]:text-2xl md:[&>h1]:text-3xl
-      [&_img]:h-10 [&_img]:w-10 [&_p]:flex [&_p]:items-center [&_p]:justify-center [&_strong]:flex">
+      class="max-w-sm pt-8 md:max-w-md
+      lg:max-w-lg [&>h1>strong]:block [&>h1]:text-2xl
+      md:[&>h1]:text-3xl [&_img]:h-10 [&_img]:w-10 [&_p]:flex [&_p]:items-center [&_p]:justify-center [&_strong]:flex">
       {@html data.wantedContent}
     </section>
   {:else if page === Page.SIGNUP_PAGE}
@@ -188,7 +188,7 @@
     </div>
   {/if}
   {#if page <= 2}
-    <div class="mt-8 flex gap-x-4">
+    <div class="mt-4 flex gap-x-4">
       <button
         on:click={() => {
           page += 1;
