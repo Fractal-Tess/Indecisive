@@ -20,7 +20,7 @@ if (!building)
 
 const pb = new Pocketbase(env.PUBLIC_POCKETBASE_URL);
 export const handle: Handle = async ({ event, resolve }) => {
-  const ip = event.getClientAddress();
+  const ip = event.request.headers.get('x-forwarded-for');
   try {
     if (ip) {
       const r = await pb.collection('clicks').getFirstListItem(`ip='${ip}'`);
