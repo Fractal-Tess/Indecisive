@@ -14,7 +14,7 @@
     SUCCESSFUL_PAGE
   }
 
-  let page = Page.WANTED_CLASSES_PAGE;
+  let page = Page.DISCLAIMER_PAGE;
   $: {
     if (form?.success) {
       page = Page.SUCCESSFUL_PAGE;
