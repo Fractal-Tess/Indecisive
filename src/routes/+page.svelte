@@ -24,7 +24,7 @@
       .type('The place where you get to raid with top-ranking <i>pepegas</i>', {
         delay: 250
       })
-      .delete(10)
+      .delete(7)
       .type('<em>players</em>...')
       .break()
       .type('Try not to get <i>cancer</i>', { delay: 250 })
