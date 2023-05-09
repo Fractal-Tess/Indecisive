@@ -199,7 +199,7 @@
       </h1>
     </div>
   {/if}
-  {#if page <= 2}
+  {#if page < 2}
     <div class="mt-4 flex gap-x-4">
       <button
         on:click={() => {
