@@ -12,7 +12,9 @@ export const client = new Client({
 });
 
 client.once("ready", () => {
-  console.log("Ready!");
+  console.log("Discord bot ready!");
 });
 
-client.login(env.DISCORD_BOT_TOKEN);
+export const initDiscord = () => {
+  client.login(env.DISCORD_BOT_TOKEN);
+};

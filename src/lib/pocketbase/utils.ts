@@ -1,5 +1,7 @@
+import type { RequestEvent } from "@sveltejs/kit";
+
 import type { ApplicationRecord } from "$lib/validation/application";
-import { env } from "$env/dynamic/public";
+import { pb } from "$lib/pocketbase/pocketbase";
 
 export const saveApplicationToDatabase = async (record: ApplicationRecord) => {
   const formData = new FormData();
@@ -12,20 +14,6 @@ export const saveApplicationToDatabase = async (record: ApplicationRecord) => {
   const result = await pb.collection("application").create(formData);
   return result;
 };
-
-export const recordImageToUrl = (
-  record: PocketbaseRecord,
-  image: string,
-  thumb?: ImageThumb
-) => {
-  let url = `${env.PUBLIC_POCKETBASE_URL}/api/files/${record.collectionId}/${record.id}/${image}`;
-  url += thumb ? `?${thumb.x}x${thumb.y}` : "";
-  return url;
-};
-
-import type { RequestEvent } from "@sveltejs/kit";
-import { pb } from "$lib/pocketbase";
-import type { ImageThumb, PocketbaseRecord } from "$lib/types";
 
 export const logRequest = async (event: RequestEvent) => {
   const ip = event.request.headers.get("x-forwarded-for");

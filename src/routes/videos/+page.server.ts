@@ -1,5 +1,5 @@
 import type { PageServerLoad } from "./$types";
-import { pb } from "$lib/pocketbase";
+import { pb } from "$lib/pocketbase/pocketbase";
 
 type Item = {
   collectionId: string;

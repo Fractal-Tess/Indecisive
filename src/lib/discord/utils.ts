@@ -1,7 +1,8 @@
-import { ChannelType, EmbedBuilder, TextChannel } from "discord.js";
-import { client } from "./bot";
+import { EmbedBuilder, TextChannel } from "discord.js";
 import { env } from "$env/dynamic/private";
+
 import type { ApplicationRecord } from "$lib/validation/application";
+import { client } from "./bot";
 
 export const sendApplicationToApplicationChat = async (
   data: ApplicationRecord,

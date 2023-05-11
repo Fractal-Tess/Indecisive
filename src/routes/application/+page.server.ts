@@ -1,13 +1,10 @@
 import type { Actions, PageServerLoad } from "./$types";
-import {
-  pb,
-  recordImageToUrl,
-  saveApplicationToDatabase,
-} from "$lib/pocketbase";
-import { sendApplicationToApplicationChat } from "$lib/discord";
-import { sendApplicationToEmails } from "$lib/email";
+import { saveApplicationToDatabase } from "$lib/pocketbase/utils";
+import { recordImageToUrl } from "$lib/pocketbase/publicUtils";
 import { validator } from "$lib/validation/application";
 import type { PocketbaseRecord } from "$lib/types";
+import { pb } from "$lib/pocketbase/pocketbase";
+import { sendApplicationToApplicationChat } from "$lib/discord/utils";
 
 interface TextItem extends PocketbaseRecord {
   content: string;
@@ -61,14 +58,7 @@ export const actions = {
       applicationRecord.data
     )) as unknown as ApplicationItem;
     const uiSreenshot = recordImageToUrl(dbRecord, dbRecord.uiScreenshot);
-    try {
-      await Promise.allSettled([
-        sendApplicationToApplicationChat(applicationRecord.data, uiSreenshot),
-        sendApplicationToEmails(formData),
-      ]);
-    } catch (error) {
-      console.error(error);
-    }
+    await sendApplicationToApplicationChat(applicationRecord.data, uiSreenshot);
 
     return {
       success: true,

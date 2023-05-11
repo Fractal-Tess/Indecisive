@@ -1,6 +1,5 @@
-import type { PageLoad } from './$types';
-import { env } from '$env/dynamic/public';
-import Pocketbase from 'pocketbase';
+import { pb } from "$lib/pocketbase/pocketbase";
+import type { PageLoad } from "./$types";
 
 type Item = {
   collectionId: string;
@@ -13,11 +12,10 @@ type Item = {
 };
 
 export const load = (async () => {
-  const pb = new Pocketbase(env.PUBLIC_POCKETBASE_URL);
   const text = await pb
-    .collection('text')
+    .collection("text")
     .getFirstListItem<Item>("unit='contact_page'");
   return {
-    content: text.content
+    content: text.content,
   };
 }) satisfies PageLoad;

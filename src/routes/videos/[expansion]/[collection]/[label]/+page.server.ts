@@ -1,4 +1,4 @@
-import { pb } from "$lib/pocketbase";
+import { pb } from "$lib/pocketbase/pocketbase";
 import type { PageServerLoad } from "./$types";
 
 type Item = {

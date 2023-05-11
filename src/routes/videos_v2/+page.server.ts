@@ -1,26 +1,20 @@
 import type { PageServerLoad } from "./$types";
-import { pb } from "$lib/pocketbase";
+import type { PocketbaseRecord } from "$lib/types";
+import { pb } from "$lib/pocketbase/pocketbase";
 
-type Records = {
-  collectionId: string;
-  collectionName: string;
-  created: string;
-  id: string;
+interface VideoCollection extends PocketbaseRecord {
   label: string;
   parent_collection: string[];
   thumbnail: string;
   top_level: boolean;
-  updated: string;
-  expand: string;
-};
+}
 
 export const load = (async () => {
   const records = await pb
     .collection("video_collection_v2")
-    .getFullList<Records>({
+    .getFullList<VideoCollection>({
       filter: `top_level=true`,
     });
-  console.log(records);
   return {
     collections: structuredClone(records),
   };
