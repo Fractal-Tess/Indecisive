@@ -1,6 +1,5 @@
-import type { PageLoad } from './$types';
-import { env } from '$env/dynamic/public';
-import Pocketbase from 'pocketbase';
+import { pb } from "$lib/pocketbase";
+import type { PageServerLoad } from "./$types";
 
 type Item = {
   collection: string[];
@@ -18,12 +17,11 @@ type Item = {
 };
 
 export const load = (async ({ params }) => {
-  const pb = new Pocketbase(env.PUBLIC_POCKETBASE_URL);
   const video = await pb
-    .collection('video')
+    .collection("video")
     .getFirstListItem<Item>(`label ='${params.label}'`);
 
   return {
-    video
+    video: structuredClone(video),
   };
-}) satisfies PageLoad;
+}) satisfies PageServerLoad;

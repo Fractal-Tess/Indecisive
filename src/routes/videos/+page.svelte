@@ -1,8 +1,9 @@
 <script lang="ts">
-  import type { PageData } from './$types';
-  import Image from '$lib/components/Image.svelte';
-  import { env } from '$env/dynamic/public';
+  import type { PageData } from "./$types";
+  import Image from "$lib/components/Collection.svelte";
+  import { env } from "$env/dynamic/public";
   export let data: PageData;
+  console.log(data);
 </script>
 
 <svelte:head>
@@ -10,12 +11,13 @@
 </svelte:head>
 
 <section
-  class="flex h-full items-center justify-center overflow-hidden text-2xl font-extrabold text-white">
+  class="flex h-full items-center justify-center overflow-hidden text-2xl font-extrabold text-white"
+>
   <ul class="flex flex-col gap-12 md:flex-row">
     {#each data.expansions as expansion}
-      {@const src = `${env.PUBLIC_POCKETBASE_URL}/api/files/${expansion.collectionId}/${expansion.id}/${expansion.thumbnail}?thumb=500x282`}
+      {@const thumbnail = `${env.PUBLIC_POCKETBASE_URL}/api/files/${expansion.collectionId}/${expansion.id}/${expansion.thumbnail}?thumb=500x282`}
       <a href={`/videos/${expansion.name}`}>
-        <Image {src} label={expansion.name} />
+        <Image {thumbnail} label={expansion.name} />
       </a>
     {:else}
       <h1>It's rather empty in here</h1>
