@@ -3,7 +3,6 @@
   import Image from "$lib/components/Collection.svelte";
   import { env } from "$env/dynamic/public";
   export let data: PageData;
-  console.log(data);
 </script>
 
 <svelte:head>
