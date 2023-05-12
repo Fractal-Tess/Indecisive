@@ -1,4 +1,4 @@
-name: Web Build & Deploy
+name: Bot Build & Deploy
 
 on:
   workflow_dispatch:
