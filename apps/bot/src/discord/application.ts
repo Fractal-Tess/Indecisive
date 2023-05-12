@@ -9,7 +9,7 @@ export const sendApplicationToApplicationChat = async (
 ) => {
   const channel = await client.channels.fetch(env.DISCORD_CHANNEL_ID);
   if (!channel) {
-    console.log("The channel doesn't exist");
+    console.error("The channel doesn't exist");
     return;
   }
 
@@ -20,7 +20,9 @@ export const sendApplicationToApplicationChat = async (
       name: `Application for ${application.discord}`,
       startMessage: message,
     });
-    thread.send(`New application ${env.DISCORD_ONAPPLICATION_TAG}`);
+    const msg = `New application ${env.DISCORD_ONAPPLICATION_TAG}`;
+    console.log(msg);
+    thread.send(msg);
   } else {
     console.error(
       `Channel with id of ${env.DISCORD_CHANNEL_ID} is not a text channel`
