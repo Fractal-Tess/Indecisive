@@ -12,12 +12,12 @@
   <meta itemprop="image" content={`${env.PUBLIC_ORIGIN_URL}/logo.png`} />
 
   <meta property="og:url" content={env.PUBLIC_ORIGIN_URL} />
-  <meta property="og:type" content="website" />
+  <meta property="og:type" content="Website" />
   <meta property="og:title" content="Indecisive" />
   <meta property="og:description" content="Community/Guild web portal." />
   <meta property="og:image" content={`${env.PUBLIC_ORIGIN_URL}/logo.png`} />
 
-  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:card" content={`${env.PUBLIC_ORIGIN_URL}/logo.png`} />
   <meta name="twitter:title" content="Indecisive" />
   <meta name="twitter:description" content="Community/Guild web portal." />
   <meta name="twitter:image" content={`${env.PUBLIC_ORIGIN_URL}/logo.png`} />
