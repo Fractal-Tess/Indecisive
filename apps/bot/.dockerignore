@@ -1,7 +1,3 @@
-node_modules/
-Dockerfile
-.env
-.github
-.husky
-apps/bot/dist
-build/
+*
+!build
+!package.json

@@ -11,11 +11,11 @@ WORKDIR /app
 
 USER nodejs
 
-COPY --chown=nodejs:nodejs  ["./build/", "package.json","./"]
+COPY --chown=nodejs:nodejs  ["build", "package.json","./"]
 
 ENV NODE_ENV production
 ENV PORT 3000
 
 EXPOSE 3000
 
-CMD [ "node", "index.cjs"  ]
+CMD [ "node", "main.cjs"  ]
