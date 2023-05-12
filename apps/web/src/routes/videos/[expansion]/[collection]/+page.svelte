@@ -1,9 +1,9 @@
 <script lang="ts">
-  import type { PageData } from "./$types";
-  import { env } from "$env/dynamic/public";
-  import { page } from "$app/stores";
+  import type { PageData } from './$types';
+  import { env } from '$env/dynamic/public';
+  import { page } from '$app/stores';
 
-  import Image from "$lib/components/Collection.svelte";
+  import Image from '$lib/components/Collection.svelte';
   export let data: PageData;
 </script>
 
@@ -12,8 +12,7 @@
 </svelte:head>
 
 <section
-  class="flex h-full items-center justify-center overflow-hidden text-2xl font-extrabold"
->
+  class="flex h-full items-center justify-center overflow-hidden text-2xl font-extrabold">
   <ul class="flex flex-col gap-12 md:flex-row">
     {#each data.videos as video}
       <a href={`${$page.url.pathname}/${video.label}`}>
@@ -23,8 +22,8 @@
           <Image {thumbnail} label={video.label} />
         {:else}
           {@const thumbnail = `https://img.youtube.com/vi/${video.yt_url.replace(
-            "https://www.youtube.com/watch?v=",
-            ""
+            'https://www.youtube.com/watch?v=',
+            ''
           )}/hqdefault.jpg`}
           <Image {thumbnail} label={video.label} />
         {/if}

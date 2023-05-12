@@ -1,5 +1,5 @@
-import type { ImageThumb, PocketbaseRecord } from "$lib/types";
-import { env } from "$env/dynamic/public";
+import type { ImageThumb, PocketbaseRecord } from '$lib/types';
+import { env } from '$env/dynamic/public';
 
 export const recordImageToUrl = (
   record: PocketbaseRecord,
@@ -7,6 +7,6 @@ export const recordImageToUrl = (
   thumb?: ImageThumb
 ) => {
   let url = `${env.PUBLIC_POCKETBASE_URL}/api/files/${record.collectionId}/${record.id}/${image}`;
-  url += thumb ? `?${thumb.x}x${thumb.y}` : "";
+  url += thumb ? `?${thumb.x}x${thumb.y}` : '';
   return url;
 };

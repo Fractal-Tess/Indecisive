@@ -1,5 +1,5 @@
-import type { PageServerLoad } from "./$types";
-import { pb } from "$lib/pocketbase/pocketbase";
+import type { PageServerLoad } from './$types';
+import { pb } from '$lib/pocketbase/pocketbase';
 
 type Item = {
   collectionId: string;
@@ -13,8 +13,8 @@ type Item = {
 };
 
 export const load = (async () => {
-  const record = await pb.collection("expansion").getFullList<Item>();
+  const record = await pb.collection('expansion').getFullList<Item>();
   return {
-    expansions: structuredClone(record),
+    expansions: structuredClone(record)
   };
 }) satisfies PageServerLoad;

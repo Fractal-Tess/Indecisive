@@ -1,5 +1,5 @@
-import type { Application } from "$lib/validation/application";
-import { trpc } from "./client";
+import type { Application } from '$lib/validation/application';
+import { trpc } from './client';
 
 export const sendApplicationToApplicationChat = async (
   application: Application,
@@ -7,6 +7,6 @@ export const sendApplicationToApplicationChat = async (
 ) => {
   await trpc.application.new.mutate({
     ...application,
-    uiImageUrl,
+    uiImageUrl
   });
 };

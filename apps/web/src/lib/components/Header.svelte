@@ -1,15 +1,14 @@
 <script lang="ts">
-  import Logo from "$lib/components/Logo.svelte";
+  import Logo from '$lib/components/Logo.svelte';
 </script>
 
-<header class="flex justify-between bg-base-100 md:px-8">
+<header class="bg-base-100 flex justify-between md:px-8">
   <a href="/" class="block aspect-square h-20 md:h-16">
-    <Logo class={"h-full object-cover"} />
+    <Logo class={'h-full object-cover'} />
   </a>
 
   <ul
-    class="navbar justify-end gap-4 whitespace-nowrap font-bold [&_a]:link-primary md:gap-8"
-  >
+    class="navbar [&_a]:link-primary justify-end gap-4 whitespace-nowrap font-bold md:gap-8">
     <li>
       <a href="/videos">Videos</a>
     </li>

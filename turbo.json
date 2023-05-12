@@ -4,9 +4,12 @@
     "build": {
       "outputs": ["build/**", "dist/**"]
     },
+
+    "format": {},
+    "lint": {},
+
     "dev": {
       "persistent": true
-    },
-    "lint": {}
+    }
   }
 }

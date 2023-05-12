@@ -1,8 +1,8 @@
-import { EmbedBuilder, TextChannel } from "discord.js";
+import { EmbedBuilder, TextChannel } from 'discord.js';
 
-import { env } from "../env.js";
-import { client } from "./client.js";
-import type { Application } from "../trpc/application/router.js";
+import { env } from '../env.js';
+import { client } from './client.js';
+import type { Application } from '../trpc/application/router.js';
 
 export const sendApplicationToApplicationChat = async (
   application: Application
@@ -18,7 +18,7 @@ export const sendApplicationToApplicationChat = async (
     const message = await channel.send({ embeds: [embed] });
     const thread = await channel.threads.create({
       name: `Application for ${application.discord}`,
-      startMessage: message,
+      startMessage: message
     });
     const msg = `New application ${env.DISCORD_ONAPPLICATION_TAG}`;
     console.log(msg);
@@ -33,65 +33,65 @@ export const sendApplicationToApplicationChat = async (
 const createEmbed = (application: Application) => {
   const embed = new EmbedBuilder()
     .setColor(0xffb52a)
-    .setTitle("New application")
+    .setTitle('New application')
     .setAuthor({
-      name: "Indecisive",
-      iconURL: "https://indecisive.app.jet-black.xyz/logo.png",
-      url: "https://indecisive.app.jet-black.xyz/",
+      name: 'Indecisive',
+      iconURL: 'https://indecisive.app.jet-black.xyz/logo.png',
+      url: 'https://indecisive.app.jet-black.xyz/'
     })
     .addFields(
       {
-        name: "Name",
-        value: application.name,
+        name: 'Name',
+        value: application.name
       },
       {
-        name: "Age",
+        name: 'Age',
         value: application.age.toString(),
-        inline: true,
+        inline: true
       },
       {
-        name: "Country",
+        name: 'Country',
         value: application.country,
-        inline: true,
+        inline: true
       }
     )
     .addFields(
       {
-        name: "In-Game Name",
-        value: application.inGameName,
+        name: 'In-Game Name',
+        value: application.inGameName
       },
       {
-        name: "Discord",
+        name: 'Discord',
         value: application.discord,
-        inline: true,
+        inline: true
       }
     )
     .addFields({
-      name: "Class/Spec",
-      value: application.classAndSpec,
+      name: 'Class/Spec',
+      value: application.classAndSpec
     })
     .addFields({
-      name: "Apply reason",
-      value: application.joinReason,
+      name: 'Apply reason',
+      value: application.joinReason
     })
     .addFields({
-      name: "Experience",
-      value: application.experience,
+      name: 'Experience',
+      value: application.experience
     })
     .addFields({
-      name: "Notes",
-      value: application.notes,
+      name: 'Notes',
+      value: application.notes
     })
     .addFields({
-      name: "Able to attend raid days",
-      value: application.attendRaidDaysNotes,
+      name: 'Able to attend raid days',
+      value: application.attendRaidDaysNotes
     })
     .addFields(
       {
-        name: "Willing to play another class",
-        value: application.willingToPlayAnotherClass,
+        name: 'Willing to play another class',
+        value: application.willingToPlayAnotherClass
       },
-      { name: "Notes", value: application.willingToPlayAnotherClassNotes }
+      { name: 'Notes', value: application.willingToPlayAnotherClassNotes }
     )
     .setImage(application.uiImageUrl)
     .setTimestamp();

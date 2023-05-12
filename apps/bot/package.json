@@ -5,8 +5,8 @@
   "scripts": {
     "dev": "ts-node --esm ./src/main.ts",
     "build": "tsup",
-    "format": "prettier --plugin-search-dir=../../ --ignore-path=../../.prettierignore --write .",
-    "lint": "eslint --ignore-path=../../.eslintignore ."
+    "lint": "eslint --ignore-path=../../.eslintignore .",
+    "format": "prettier --plugin-search-dir=../../ --ignore-path=../../.prettierignore --write ."
   },
   "keywords": [],
   "author": "",

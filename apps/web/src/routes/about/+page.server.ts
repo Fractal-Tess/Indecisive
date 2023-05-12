@@ -1,5 +1,5 @@
-import type { PageLoad } from "./$types";
-import { pb } from "$lib/pocketbase/pocketbase";
+import type { PageLoad } from './$types';
+import { pb } from '$lib/pocketbase/pocketbase';
 
 type Item = {
   collectionId: string;
@@ -13,9 +13,9 @@ type Item = {
 
 export const load = (async () => {
   const text = await pb
-    .collection("text")
+    .collection('text')
     .getFirstListItem<Item>("unit='about_page'");
   return {
-    content: text.content,
+    content: text.content
   };
 }) satisfies PageLoad;

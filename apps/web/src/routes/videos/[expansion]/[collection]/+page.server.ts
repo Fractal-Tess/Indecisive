@@ -1,5 +1,5 @@
-import { pb } from "$lib/pocketbase/pocketbase";
-import type { PageServerLoad } from "./$types";
+import { pb } from '$lib/pocketbase/pocketbase';
+import type { PageServerLoad } from './$types';
 
 type Item = {
   collection: string[];
@@ -17,11 +17,11 @@ type Item = {
 };
 
 export const load = (async ({ params }) => {
-  const videos = await pb.collection("video").getFullList<Item>({
-    filter: `collection.label ='${params.collection}'`,
+  const videos = await pb.collection('video').getFullList<Item>({
+    filter: `collection.label ='${params.collection}'`
   });
 
   return {
-    videos: structuredClone(videos),
+    videos: structuredClone(videos)
   };
 }) satisfies PageServerLoad;

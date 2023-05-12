@@ -1,6 +1,6 @@
-import type { PageServerLoad } from "./$types";
-import { pb } from "$lib/pocketbase/pocketbase";
-import type { PocketbaseRecord } from "$lib/types";
+import type { PageServerLoad } from './$types';
+import { pb } from '$lib/pocketbase/pocketbase';
+import type { PocketbaseRecord } from '$lib/types';
 
 interface Expansion extends PocketbaseRecord {
   label: string;
@@ -10,12 +10,12 @@ interface Expansion extends PocketbaseRecord {
 
 export const load = (async ({ params, url }) => {
   const records = await pb
-    .collection("video_collection")
+    .collection('video_collection')
     .getFullList<Expansion>({
-      filter: `expansion.name ='${params.expansion}'`,
+      filter: `expansion.name ='${params.expansion}'`
     });
 
   return {
-    expansion: structuredClone(records),
+    expansion: structuredClone(records)
   };
 }) satisfies PageServerLoad;

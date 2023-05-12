@@ -1,8 +1,8 @@
 <script lang="ts">
-  import Collection from "$lib/components/Collection.svelte";
-  import ContentLayout from "$lib/components/ContentLayout.svelte";
-  import { recordImageToUrl } from "$lib/pocketbase/publicUtils";
-  import type { PageData } from "./$types";
+  import Collection from '$lib/components/Collection.svelte';
+  import ContentLayout from '$lib/components/ContentLayout.svelte';
+  import { recordImageToUrl } from '$lib/pocketbase/publicUtils';
+  import type { PageData } from './$types';
 
   export let data: PageData;
 </script>
@@ -13,8 +13,7 @@
       <a href="" class="dev block">
         <Collection
           label={collection.label}
-          thumbnail={recordImageToUrl(collection, collection.thumbnail)}
-        />
+          thumbnail={recordImageToUrl(collection, collection.thumbnail)} />
       </a>
     </li>
   {/each}
@@ -23,8 +22,7 @@
       <a href="" class="dev block">
         <Collection
           label={collection.label}
-          thumbnail={recordImageToUrl(collection, collection.thumbnail)}
-        />
+          thumbnail={recordImageToUrl(collection, collection.thumbnail)} />
       </a>
     </li>
   {/each}
@@ -33,8 +31,7 @@
       <a href="" class="dev block">
         <Collection
           label={collection.label}
-          thumbnail={recordImageToUrl(collection, collection.thumbnail)}
-        />
+          thumbnail={recordImageToUrl(collection, collection.thumbnail)} />
       </a>
     </li>
   {/each}

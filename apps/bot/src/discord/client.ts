@@ -1,5 +1,5 @@
-import { Client, GatewayIntentBits } from "discord.js";
-import { env } from "../env.js";
+import { Client, GatewayIntentBits } from 'discord.js';
+import { env } from '../env.js';
 
 export const client = new Client({
   intents: [
@@ -7,12 +7,16 @@ export const client = new Client({
     GatewayIntentBits.GuildMessages,
     GatewayIntentBits.MessageContent,
     GatewayIntentBits.GuildMembers,
-    GatewayIntentBits.GuildVoiceStates,
-  ],
+    GatewayIntentBits.GuildVoiceStates
+  ]
 });
 
-client.once("ready", () => {
-  console.log("Discord bot ready!");
+client.once('ready', () => {
+  console.log('Discord bot ready!');
+});
+
+client.on('messageCreate', msg => {
+  console.log(msg);
 });
 
 export const initDiscord = async () => {

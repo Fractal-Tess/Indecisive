@@ -1,6 +1,6 @@
-import { env } from "$env/dynamic/private";
-import { env as envPub } from "$env/dynamic/public";
-import Pocketbase from "pocketbase";
+import { env } from '$env/dynamic/private';
+import { env as envPub } from '$env/dynamic/public';
+import Pocketbase from 'pocketbase';
 
 export const pb = new Pocketbase(envPub.PUBLIC_POCKETBASE_URL);
 

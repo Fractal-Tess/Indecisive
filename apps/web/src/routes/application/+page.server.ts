@@ -1,10 +1,10 @@
-import type { Actions, PageServerLoad } from "./$types";
-import { saveApplicationToDatabase } from "$lib/pocketbase/utils";
-import { recordImageToUrl } from "$lib/pocketbase/publicUtils";
-import { validator } from "$lib/validation/application";
-import type { PocketbaseRecord } from "@indecisive/types";
-import { pb } from "$lib/pocketbase/pocketbase";
-import { sendApplicationToApplicationChat } from "$lib/trpc/application";
+import type { Actions, PageServerLoad } from './$types';
+import { saveApplicationToDatabase } from '$lib/pocketbase/utils';
+import { recordImageToUrl } from '$lib/pocketbase/publicUtils';
+import { validator } from '$lib/validation/application';
+import type { PocketbaseRecord } from '@indecisive/types';
+import { pb } from '$lib/pocketbase/pocketbase';
+import { sendApplicationToApplicationChat } from '$lib/trpc/application';
 
 interface TextItem extends PocketbaseRecord {
   content: string;
@@ -28,15 +28,15 @@ interface ApplicationItem extends PocketbaseRecord {
 
 export const load = (async () => {
   const disclaimer = await pb
-    .collection("text")
+    .collection('text')
     .getFirstListItem<TextItem>("unit='application_disclaimer_page'");
   const wanted = await pb
-    .collection("text")
+    .collection('text')
     .getFirstListItem<TextItem>("unit='wanted_classes'");
 
   return {
     disclaimerContent: disclaimer.content,
-    wantedContent: wanted.content,
+    wantedContent: wanted.content
   };
 }) satisfies PageServerLoad;
 
@@ -50,7 +50,7 @@ export const actions = {
       console.error(application.error.formErrors);
       return {
         success: false,
-        errors: application.error.formErrors,
+        errors: application.error.formErrors
       };
     }
 
@@ -62,7 +62,7 @@ export const actions = {
 
     return {
       success: true,
-      errors: {},
+      errors: {}
     };
-  },
+  }
 } as Actions;

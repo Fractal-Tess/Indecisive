@@ -1,6 +1,6 @@
-import type { PageServerLoad } from "./$types";
-import type { PocketbaseRecord } from "$lib/types";
-import { pb } from "$lib/pocketbase/pocketbase";
+import type { PageServerLoad } from './$types';
+import type { PocketbaseRecord } from '$lib/types';
+import { pb } from '$lib/pocketbase/pocketbase';
 
 interface VideoCollection extends PocketbaseRecord {
   label: string;
@@ -11,11 +11,11 @@ interface VideoCollection extends PocketbaseRecord {
 
 export const load = (async () => {
   const records = await pb
-    .collection("video_collection_v2")
+    .collection('video_collection_v2')
     .getFullList<VideoCollection>({
-      filter: `top_level=true`,
+      filter: `top_level=true`
     });
   return {
-    collections: structuredClone(records),
+    collections: structuredClone(records)
   };
 }) satisfies PageServerLoad;

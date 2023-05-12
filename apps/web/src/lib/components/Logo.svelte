@@ -1,5 +1,5 @@
 <script lang="ts">
-  let _class = "";
+  let _class = '';
   export { _class as class };
 </script>
 
@@ -7,5 +7,4 @@
   src="/logo.png"
   alt="logo"
   class={`${_class}`}
-  style={`filter:drop-shadow(0 0 10px hsl(var(--p)));`}
-/>
+  style={`filter:drop-shadow(0 0 10px hsl(var(--p)));`} />
