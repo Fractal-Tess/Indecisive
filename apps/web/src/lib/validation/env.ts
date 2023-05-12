@@ -4,8 +4,6 @@ import z from "zod";
 
 export const validateEnv = () => {
   const validator = z.object({
-    SENDGRID_KEY: z.string(),
-    RECEIVER_EMAIL: z.string(),
     PUBLIC_POCKETBASE_URL: z.string(),
     POCKETBASE_USER_EMAIL: z.string(),
     POCKETBASE_USER_PASSWORD: z.string(),
@@ -14,8 +12,6 @@ export const validateEnv = () => {
   });
 
   validator.parse({
-    SENDGRID_KEY: env.SENDGRID_KEY,
-    RECEIVER_EMAIL: env.RECEIVER_EMAIL,
     PUBLIC_POCKETBASE_URL: envPub.PUBLIC_POCKETBASE_URL,
     POCKETBASE_USER_EMAIL: env.POCKETBASE_USER_EMAIL,
     POCKETBASE_USER_PASSWORD: env.POCKETBASE_USER_PASSWORD,
