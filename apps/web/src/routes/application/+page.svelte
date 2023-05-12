@@ -14,8 +14,8 @@
     SUCCESSFUL_PAGE,
   }
 
-  // let page = Page.DISCLAIMER_PAGE;
-  let page = 2;
+  let page = Page.DISCLAIMER_PAGE;
+  // let page = 2;
 
   $: {
     if (form?.success) {
