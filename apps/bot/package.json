@@ -1,0 +1,26 @@
+{
+  "name": "@indecisive/bot",
+  "version": "0.0.1",
+  "type": "module",
+  "scripts": {
+    "dev": "ts-node --esm ./src/main.ts",
+    "build": "tsup",
+    "format": "prettier --plugin-search-dir=../../ --ignore-path=../../.prettierignore --write .",
+    "lint": "eslint --ignore-path=../../.eslintignore ."
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@trpc/server": "^10.25.1",
+    "@tsconfig/node18": "^2.0.0",
+    "@types/cors": "^2.8.13",
+    "cors": "^2.8.5",
+    "discord.js": "^14.11.0",
+    "dotenv": "^16.0.3",
+    "ts-node": "^10.9.1",
+    "tsup": "^6.7.0",
+    "typescript": "^5.0.4",
+    "zod": "^3.21.4"
+  }
+}
