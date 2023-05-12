@@ -47,7 +47,7 @@ export const actions = {
     const application = await validator.safeParseAsync(pojo);
 
     if (!application.success) {
-      console.log(application.error.formErrors);
+      console.error(application.error.formErrors);
       return {
         success: false,
         errors: application.error.formErrors,
