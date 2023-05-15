@@ -5,7 +5,27 @@
 
 version: 2
 updates:
-  - package-ecosystem: 'npm' # See documentation for possible values
-    directory: '/' # Location of package manifests
+  - package-ecosystem: 'npm'
+    directory: '/'
     schedule:
-      interval: 'weekly'
+      interval: 'monthly'
+
+  - package-ecosystem: 'npm'
+    directory: '/apps/web'
+    schedule:
+      interval: 'monthly'
+
+  - package-ecosystem: 'npm'
+    directory: '/apps/bot'
+    schedule:
+      interval: 'monthly'
+
+  - package-ecosystem: 'npm'
+    directory: '/apps/tauri'
+    schedule:
+      interval: 'monthly'
+
+  - package-ecosystem: 'cargo'
+    directory: '/apps/tauri/src-tauri'
+    schedule:
+      interval: 'monthly'
