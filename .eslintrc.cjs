@@ -21,6 +21,11 @@ module.exports = {
     node: true
   },
   rules: {
+    "no-empty": [
+      "error", {
+        "allowEmptyCatch": true
+      }
+    ],
     'no-unused-vars': [
       'warn',
       {
