@@ -6,7 +6,7 @@ import { building } from '$app/environment';
 
 if (!building) {
   validateEnv();
-  initPocketbase();
+  await initPocketbase();
 }
 
 export const handle: Handle = async ({ event, resolve }) => {
