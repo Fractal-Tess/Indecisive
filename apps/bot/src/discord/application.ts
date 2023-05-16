@@ -21,7 +21,6 @@ export const sendApplicationToApplicationChat = async (
       startMessage: message
     });
     const msg = `New application ${env.DISCORD_ONAPPLICATION_TAG}`;
-    console.log(msg);
     thread.send(msg);
   } else {
     console.error(

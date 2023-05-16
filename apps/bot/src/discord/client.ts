@@ -15,9 +15,9 @@ client.once('ready', () => {
   console.log('Discord bot ready!');
 });
 
-client.on('messageCreate', msg => {
-  console.log(msg);
-});
+// client.on('messageCreate', msg => {
+//   console.log(msg);
+// });
 
 export const initDiscord = async () => {
   await client.login(env.DISCORD_BOT_TOKEN);

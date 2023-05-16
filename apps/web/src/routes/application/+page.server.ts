@@ -43,8 +43,9 @@ export const load = (async () => {
 export const actions = {
   default: async ({ request }) => {
     const formData = await request.formData();
-    const pojo = Object.fromEntries(formData.entries());
-    const application = await validator.safeParseAsync(pojo);
+    const application = await validator.safeParseAsync(
+      Object.fromEntries(formData.entries())
+    );
 
     if (!application.success) {
       console.error(application.error.formErrors);
@@ -53,6 +54,7 @@ export const actions = {
         errors: application.error.formErrors
       };
     }
+    console.log(formData);
 
     const dbRecord = (await saveApplicationToDatabase(
       application.data
