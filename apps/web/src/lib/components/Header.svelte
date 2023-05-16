@@ -8,7 +8,7 @@
   </a>
 
   <ul
-    class="navbar [&_a]:link-primary justify-end gap-4 whitespace-nowrap font-bold md:gap-8">
+    class="navbar [&_a]:link-primary justify-end gap-4 whitespace-nowrap font-extrabold md:gap-8 md:text-xl">
     <li>
       <a href="/videos">Videos</a>
     </li>
