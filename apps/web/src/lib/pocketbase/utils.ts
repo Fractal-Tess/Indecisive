@@ -19,8 +19,13 @@ export const logRequest = async (event: RequestEvent) => {
   const ip = event.request.headers.get('x-forwarded-for');
   if (!ip) return;
   try {
-    const r = await pb.collection('clicks').getFirstListItem(`ip='${ip}'`);
-    await pb.collection('clicks').update(r.id, { count: r.count + 1 });
+    try {
+      const r = await pb.collection('clicks').getFirstListItem(`ip='${ip}'`);
+      await pb.collection('clicks').update(r.id, { count: r.count + 1 });
+    } catch (error) {
+      if (error instanceof Error) console.error(error.message);
+      else console.log('Other error');
+    }
   } catch (error) {
     await pb.collection('clicks').create({
       ip,
