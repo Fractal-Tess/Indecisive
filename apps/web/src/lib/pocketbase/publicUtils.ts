@@ -1,4 +1,4 @@
-import type { ImageThumb, PocketbaseRecord } from '$lib/types';
+import type { ImageThumb, PocketbaseRecord } from '@indecisive/types';
 import { env } from '$env/dynamic/public';
 
 export const recordImageToUrl = (
