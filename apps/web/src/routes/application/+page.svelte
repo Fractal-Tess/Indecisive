@@ -123,6 +123,7 @@
           <span>UI screenshot in a raid environment</span>
           <input
             type="file"
+            accept="image/*"
             name="uiScreenshot"
             class="file-input-bordered file-input-primary file-input w-full" />
         </label>
