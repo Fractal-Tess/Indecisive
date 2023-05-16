@@ -3,7 +3,8 @@ name: Bot Build & Deploy
 on:
   workflow_dispatch:
   push:
-    branches: ['main']
+    branches:
+      - release
     paths:
       - 'apps/bot/**/*'
       - 'packages/types/**/*'
