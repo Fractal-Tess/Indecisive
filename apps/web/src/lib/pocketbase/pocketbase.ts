@@ -9,4 +9,5 @@ export const initPocketbase = async () => {
     env.POCKETBASE_USER_EMAIL,
     env.POCKETBASE_USER_PASSWORD
   );
+  pb.autoCancellation(false);
 };
