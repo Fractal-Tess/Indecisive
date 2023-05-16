@@ -22,10 +22,7 @@ export const logRequest = async (event: RequestEvent) => {
     try {
       const r = await pb.collection('clicks').getFirstListItem(`ip='${ip}'`);
       await pb.collection('clicks').update(r.id, { count: r.count + 1 });
-    } catch (error) {
-      if (error instanceof Error) console.error(error.message);
-      else console.log('Other error');
-    }
+    } catch (error) {}
   } catch (error) {
     await pb.collection('clicks').create({
       ip,
