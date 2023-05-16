@@ -3,7 +3,7 @@
 </script>
 
 <header class="bg-base-100 flex justify-between md:px-8">
-  <a href="/" class="aspect-square h-20 md:h-16">
+  <a href="/" class=" h-20 w-20 md:h-16 md:w-16">
     <Logo class={'h-full object-cover'} />
   </a>
 
