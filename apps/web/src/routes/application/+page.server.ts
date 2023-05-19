@@ -54,7 +54,6 @@ export const actions = {
         errors: application.error.formErrors
       };
     }
-    console.log(formData);
 
     const dbRecord = (await saveApplicationToDatabase(
       application.data
