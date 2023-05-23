@@ -1,6 +1,6 @@
 import type { PageServerLoad } from './$types';
 import { pb } from '$lib/pocketbase/pocketbase';
-import type { PocketbaseRecord } from '$lib/types';
+import type { PocketbaseRecord } from '@indecisive/types';
 
 interface Expansion extends PocketbaseRecord {
   label: string;

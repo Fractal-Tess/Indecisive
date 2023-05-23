@@ -1,5 +1,3 @@
-import type { RequestEvent } from '@sveltejs/kit';
-
 import type { Application } from '$lib/validation/application';
 import { pb } from '$lib/pocketbase/pocketbase';
 
@@ -22,20 +20,4 @@ export const saveApplicationToDatabase = async (record: Application) => {
 
   const result = await pb.collection('application').create(formData);
   return result;
-};
-
-export const logRequest = async (event: RequestEvent) => {
-  const ip = event.request.headers.get('x-forwarded-for');
-  if (!ip) return;
-  try {
-    try {
-      const r = await pb.collection('clicks').getFirstListItem(`ip='${ip}'`);
-      await pb.collection('clicks').update(r.id, { count: r.count + 1 });
-    } catch (error) {}
-  } catch (error) {
-    await pb.collection('clicks').create({
-      ip,
-      count: 1
-    });
-  }
 };

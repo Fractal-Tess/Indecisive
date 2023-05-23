@@ -1,4 +1,4 @@
-import type { PageLoad } from './$types';
+import type { PageServerLoad } from './$types';
 import { pb } from '$lib/pocketbase/pocketbase';
 
 type Item = {
@@ -18,4 +18,4 @@ export const load = (async () => {
   return {
     content: text.content
   };
-}) satisfies PageLoad;
+}) satisfies PageServerLoad;
