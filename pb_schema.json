@@ -171,9 +171,7 @@
           "maxSelect": 1,
           "maxSize": 5242880,
           "mimeTypes": [],
-          "thumbs": [
-            "500x282"
-          ],
+          "thumbs": ["500x282"],
           "protected": false
         }
       },
@@ -523,10 +521,7 @@
         "required": false,
         "options": {
           "maxSelect": 1,
-          "values": [
-            "Yes",
-            "No"
-          ]
+          "values": ["Yes", "No"]
         }
       },
       {
@@ -589,35 +584,6 @@
     "createRule": "",
     "updateRule": null,
     "deleteRule": "",
-    "options": {}
-  },
-  {
-    "id": "l2llj8zye65h1io",
-    "name": "armory_character_snapshot",
-    "type": "base",
-    "system": false,
-    "schema": [
-      {
-        "id": "duflpxab",
-        "name": "character",
-        "type": "relation",
-        "system": false,
-        "required": false,
-        "options": {
-          "collectionId": "e1phi1vazvxai3p",
-          "cascadeDelete": false,
-          "minSelect": null,
-          "maxSelect": 1,
-          "displayFields": []
-        }
-      }
-    ],
-    "indexes": [],
-    "listRule": "",
-    "viewRule": null,
-    "createRule": "",
-    "updateRule": null,
-    "deleteRule": null,
     "options": {}
   },
   {
@@ -927,6 +893,87 @@
     "options": {}
   },
   {
+    "id": "hafpnz9g6g30ew8",
+    "name": "armory_character_snapshot_artifact",
+    "type": "base",
+    "system": false,
+    "schema": [
+      {
+        "id": "z0gsghxm",
+        "name": "name",
+        "type": "text",
+        "system": false,
+        "required": false,
+        "options": {
+          "min": null,
+          "max": null,
+          "pattern": ""
+        }
+      },
+      {
+        "id": "yaaagfzr",
+        "name": "traits",
+        "type": "number",
+        "system": false,
+        "required": false,
+        "options": {
+          "min": null,
+          "max": null
+        }
+      },
+      {
+        "id": "z5cljif7",
+        "name": "characterSnapshot",
+        "type": "relation",
+        "system": false,
+        "required": false,
+        "options": {
+          "collectionId": "l2llj8zye65h1io",
+          "cascadeDelete": false,
+          "minSelect": null,
+          "maxSelect": 1,
+          "displayFields": []
+        }
+      }
+    ],
+    "indexes": [],
+    "listRule": null,
+    "viewRule": null,
+    "createRule": null,
+    "updateRule": null,
+    "deleteRule": null,
+    "options": {}
+  },
+  {
+    "id": "l2llj8zye65h1io",
+    "name": "armory_character_snapshot",
+    "type": "base",
+    "system": false,
+    "schema": [
+      {
+        "id": "duflpxab",
+        "name": "character",
+        "type": "relation",
+        "system": false,
+        "required": false,
+        "options": {
+          "collectionId": "e1phi1vazvxai3p",
+          "cascadeDelete": false,
+          "minSelect": null,
+          "maxSelect": 1,
+          "displayFields": []
+        }
+      }
+    ],
+    "indexes": [],
+    "listRule": null,
+    "viewRule": null,
+    "createRule": null,
+    "updateRule": null,
+    "deleteRule": null,
+    "options": {}
+  },
+  {
     "id": "e1phi1vazvxai3p",
     "name": "armory_character",
     "type": "base",
@@ -984,58 +1031,6 @@
     "indexes": [
       "CREATE UNIQUE INDEX `idx_Zwz791B` ON `armory_character` (`name`)"
     ],
-    "listRule": "",
-    "viewRule": null,
-    "createRule": "",
-    "updateRule": null,
-    "deleteRule": null,
-    "options": {}
-  },
-  {
-    "id": "hafpnz9g6g30ew8",
-    "name": "armory_character_snapshot_artifact",
-    "type": "base",
-    "system": false,
-    "schema": [
-      {
-        "id": "z0gsghxm",
-        "name": "name",
-        "type": "text",
-        "system": false,
-        "required": false,
-        "options": {
-          "min": null,
-          "max": null,
-          "pattern": ""
-        }
-      },
-      {
-        "id": "yaaagfzr",
-        "name": "traits",
-        "type": "number",
-        "system": false,
-        "required": false,
-        "options": {
-          "min": null,
-          "max": null
-        }
-      },
-      {
-        "id": "z5cljif7",
-        "name": "characterSnapshot",
-        "type": "relation",
-        "system": false,
-        "required": false,
-        "options": {
-          "collectionId": "l2llj8zye65h1io",
-          "cascadeDelete": false,
-          "minSelect": null,
-          "maxSelect": 1,
-          "displayFields": []
-        }
-      }
-    ],
-    "indexes": [],
     "listRule": null,
     "viewRule": null,
     "createRule": null,
