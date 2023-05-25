@@ -347,46 +347,6 @@
     "options": {}
   },
   {
-    "id": "zjv588pcgijqsuh",
-    "name": "clicks",
-    "type": "base",
-    "system": false,
-    "schema": [
-      {
-        "id": "oj5t8hyu",
-        "name": "ip",
-        "type": "text",
-        "system": false,
-        "required": false,
-        "options": {
-          "min": null,
-          "max": null,
-          "pattern": ""
-        }
-      },
-      {
-        "id": "groynuei",
-        "name": "count",
-        "type": "number",
-        "system": false,
-        "required": false,
-        "options": {
-          "min": null,
-          "max": null
-        }
-      }
-    ],
-    "indexes": [
-      "CREATE INDEX `idx_wHNlEQw` ON `clicks` (\n  `count`,\n  `ip`\n)"
-    ],
-    "listRule": null,
-    "viewRule": null,
-    "createRule": null,
-    "updateRule": null,
-    "deleteRule": null,
-    "options": {}
-  },
-  {
     "id": "4fw5yneskpohhqn",
     "name": "application",
     "type": "base",
@@ -587,7 +547,97 @@
     "options": {}
   },
   {
-    "id": "4j3ds8guf4yyokf",
+    "id": "wf89yjnts9soyvw",
+    "name": "discord_user",
+    "type": "base",
+    "system": false,
+    "schema": [
+      {
+        "id": "dqvqx6ev",
+        "name": "name",
+        "type": "text",
+        "system": false,
+        "required": true,
+        "options": {
+          "min": null,
+          "max": null,
+          "pattern": ""
+        }
+      },
+      {
+        "id": "dsqb56o2",
+        "name": "discordTag",
+        "type": "text",
+        "system": false,
+        "required": false,
+        "options": {
+          "min": null,
+          "max": null,
+          "pattern": ""
+        }
+      },
+      {
+        "id": "jw2skbe6",
+        "name": "discordId",
+        "type": "number",
+        "system": false,
+        "required": false,
+        "options": {
+          "min": null,
+          "max": null
+        }
+      }
+    ],
+    "indexes": ["CREATE UNIQUE INDEX `idx_XUjyM9p` ON `discord_user` (`name`)"],
+    "listRule": "",
+    "viewRule": null,
+    "createRule": null,
+    "updateRule": null,
+    "deleteRule": null,
+    "options": {}
+  },
+  {
+    "id": "l2llj8zye6551io",
+    "name": "armory_character_snapshot",
+    "type": "base",
+    "system": false,
+    "schema": [
+      {
+        "id": "vobo183v",
+        "name": "character",
+        "type": "relation",
+        "system": false,
+        "required": false,
+        "options": {
+          "collectionId": "e1phi1vaz1xai3p",
+          "cascadeDelete": false,
+          "minSelect": null,
+          "maxSelect": 1,
+          "displayFields": []
+        }
+      },
+      {
+        "id": "mhf7arjz",
+        "name": "timestamp",
+        "type": "date",
+        "system": false,
+        "required": false,
+        "options": {
+          "min": "",
+          "max": ""
+        }
+      }
+    ],
+    "indexes": [],
+    "listRule": null,
+    "viewRule": null,
+    "createRule": "",
+    "updateRule": "",
+    "deleteRule": null,
+    "options": {}
+  },
+  {
+    "id": "4j3ds8gu24yyokf",
     "name": "armory_character_snapshot_stats",
     "type": "base",
     "system": false,
@@ -868,13 +918,13 @@
         }
       },
       {
-        "id": "wy4fhyid",
+        "id": "2bgabxku",
         "name": "characterSnapshot",
         "type": "relation",
         "system": false,
         "required": false,
         "options": {
-          "collectionId": "l2llj8zye65h1io",
+          "collectionId": "l2llj8zye6551io",
           "cascadeDelete": false,
           "minSelect": null,
           "maxSelect": 1,
@@ -887,13 +937,13 @@
     ],
     "listRule": null,
     "viewRule": null,
-    "createRule": null,
+    "createRule": "",
     "updateRule": null,
     "deleteRule": null,
     "options": {}
   },
   {
-    "id": "hafpnz9g6g30ew8",
+    "id": "hafpnz9g6g20ew8",
     "name": "armory_character_snapshot_artifact",
     "type": "base",
     "system": false,
@@ -922,13 +972,13 @@
         }
       },
       {
-        "id": "z5cljif7",
+        "id": "jrhvauqz",
         "name": "characterSnapshot",
         "type": "relation",
         "system": false,
         "required": false,
         "options": {
-          "collectionId": "l2llj8zye65h1io",
+          "collectionId": "l2llj8zye6551io",
           "cascadeDelete": false,
           "minSelect": null,
           "maxSelect": 1,
@@ -939,42 +989,13 @@
     "indexes": [],
     "listRule": null,
     "viewRule": null,
-    "createRule": null,
+    "createRule": "",
     "updateRule": null,
     "deleteRule": null,
     "options": {}
   },
   {
-    "id": "l2llj8zye65h1io",
-    "name": "armory_character_snapshot",
-    "type": "base",
-    "system": false,
-    "schema": [
-      {
-        "id": "duflpxab",
-        "name": "character",
-        "type": "relation",
-        "system": false,
-        "required": false,
-        "options": {
-          "collectionId": "e1phi1vazvxai3p",
-          "cascadeDelete": false,
-          "minSelect": null,
-          "maxSelect": 1,
-          "displayFields": []
-        }
-      }
-    ],
-    "indexes": [],
-    "listRule": null,
-    "viewRule": null,
-    "createRule": null,
-    "updateRule": null,
-    "deleteRule": null,
-    "options": {}
-  },
-  {
-    "id": "e1phi1vazvxai3p",
+    "id": "e1phi1vaz1xai3p",
     "name": "armory_character",
     "type": "base",
     "system": false,
@@ -1026,15 +1047,29 @@
           "max": null,
           "pattern": ""
         }
+      },
+      {
+        "id": "k0hzfpwk",
+        "name": "discordUser",
+        "type": "relation",
+        "system": false,
+        "required": false,
+        "options": {
+          "collectionId": "wf89yjnts9soyvw",
+          "cascadeDelete": false,
+          "minSelect": null,
+          "maxSelect": 1,
+          "displayFields": []
+        }
       }
     ],
     "indexes": [
       "CREATE UNIQUE INDEX `idx_Zwz791B` ON `armory_character` (`name`)"
     ],
-    "listRule": null,
+    "listRule": "",
     "viewRule": null,
     "createRule": null,
-    "updateRule": null,
+    "updateRule": "",
     "deleteRule": null,
     "options": {}
   }
