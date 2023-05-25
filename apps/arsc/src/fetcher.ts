@@ -1,8 +1,7 @@
-import { load } from 'cheerio';
-import type { Character, Stats, Csrf, Artifact } from './types.js';
+import type { Csrf } from './types.js';
 import { CustomError } from './error.js';
 
-const fetchGuildEntriesByGuildId = async (id: string, csrf: Csrf) => {
+export const fetchGuildCharactersByGuildId = async (id: string, csrf: Csrf) => {
   const headers = new Headers();
   headers.append(
     'User-Agent',
@@ -65,7 +64,7 @@ const fetchGuildEntriesByGuildId = async (id: string, csrf: Csrf) => {
   }
 };
 
-const fetchCharacterById = async (id: string, csrf: Csrf) => {
+export const fetchCharacterById = async (id: string, csrf: Csrf) => {
   const headers = new Headers();
 
   headers.append(
@@ -104,5 +103,3 @@ const fetchCharacterById = async (id: string, csrf: Csrf) => {
   const html = await res.text();
   return html;
 };
-
-export { fetchCharacterById, fetchGuildEntriesByGuildId as fetchGuildById };

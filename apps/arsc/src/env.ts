@@ -8,6 +8,4 @@ const envValidator = z.object({
   GUILD_ID: z.string()
 });
 dotenv.config();
-const env = envValidator.parse(process.env);
-
-export { env };
+export const env = envValidator.parse(process.env);

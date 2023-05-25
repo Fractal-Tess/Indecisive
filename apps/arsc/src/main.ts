@@ -7,7 +7,10 @@ import {
   getCsrf
 } from './models.js';
 import { pocketbaseInit } from './pocketbase.js';
-import { fetchCharacterById, fetchGuildById } from './fetcher.js';
+import {
+  fetchGuildCharactersByGuildId,
+  fetchCharacterById
+} from './fetcher.js';
 import { env } from './env.js';
 import { CustomError } from './error.js';
 import { parseArmoryCharacter } from './parser.js';
@@ -22,7 +25,7 @@ for (;;) {
   csrf = await getCsrf();
 
   try {
-    guildCharacters = await fetchGuildById(env.GUILD_ID, csrf);
+    guildCharacters = await fetchGuildCharactersByGuildId(env.GUILD_ID, csrf);
   } catch (error) {
     if (error instanceof CustomError) {
       // If network error, retry

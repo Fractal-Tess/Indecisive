@@ -1,4 +1,4 @@
-class CustomError {
+export class CustomError {
   public type: 'network' | 'parse' | 'csrf';
   public message: string;
   constructor(type: CustomError['type'], message: CustomError['message']) {
@@ -6,5 +6,3 @@ class CustomError {
     this.message = message;
   }
 }
-
-export { CustomError };
