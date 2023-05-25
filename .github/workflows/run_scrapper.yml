@@ -51,4 +51,10 @@ jobs:
         run: pnpm install
 
       - name: Run scrapper
-        run: pnpm turbo run dev --filter arcs
+        env:
+          POCKETBASE_URL: ${{ secrets.POCKETBASE_URL }}
+          POCKETBASE_EMAIL: ${{ secrets.POCKETBASE_EMAIL }}
+          POCKETBASE_PASSWORD: ${{ secrets.POCKETBASE_PASSWORD }}
+          GUILD_ID: ${{ secrets.GUILD_ID }}
+        working-directory: ./apps/arsc
+        run: pnpm start
