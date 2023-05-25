@@ -57,7 +57,8 @@ export const createCharacterSnapshot = async (
   pbArmoryCharacterId: string
 ): Promise<string> => {
   const record = await pb.collection('armory_character_snapshot').create({
-    character: pbArmoryCharacterId
+    character: pbArmoryCharacterId,
+    timestamp: new Date()
   });
   return record.id;
 };
