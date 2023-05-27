@@ -4,7 +4,7 @@ import { env } from '../env.js';
 import { client } from './client.js';
 import type { Application } from '../trpc/application/router.js';
 
-export const sendApplicationToApplicationChat = async (
+export const sendGuildApplicationToapplicationChat = async (
   application: Application
 ) => {
   const channel = await client.channels.fetch(env.DISCORD_CHANNEL_ID);
