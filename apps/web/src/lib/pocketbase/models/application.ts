@@ -1,7 +1,8 @@
-import type { Application } from '$lib/validation/application';
-import { pb } from '$lib/pocketbase/pocketbase';
+import type { Application } from '@indecisive/types';
+import { pb } from '../pocketbase';
+import type { Record } from 'pocketbase';
 
-export const saveApplicationToDatabase = async (record: Application) => {
+export const saveApplication = async (record: Application) => {
   const formData = new FormData();
 
   for (const [key, val] of Object.entries(record)) {
@@ -19,5 +20,6 @@ export const saveApplicationToDatabase = async (record: Application) => {
   }
 
   const result = await pb.collection('application').create(formData);
-  return result;
+
+  return result as Record & Application & { uiScreenshot: string };
 };

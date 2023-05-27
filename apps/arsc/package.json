@@ -17,6 +17,7 @@
     "zod": "^3.21.4"
   },
   "devDependencies": {
+    "@indecisive/types": "workspace:^",
     "nodemon": "^2.0.22"
   }
 }

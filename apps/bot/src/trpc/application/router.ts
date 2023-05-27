@@ -1,6 +1,6 @@
 import { publicProcedure } from '../procedures/public.js';
 import { trpc } from '../trpc.js';
-import { sendApplicationToApplicationChat } from '../../discord/application.js';
+import { sendGuildApplicationToapplicationChat } from '../../discord/application.js';
 import { z } from 'zod';
 
 const validator = z.object({
@@ -23,6 +23,6 @@ export type Application = z.infer<typeof validator>;
 
 export const router = trpc.router({
   new: publicProcedure.input(validator).mutation(({ input: application }) => {
-    sendApplicationToApplicationChat(application);
+    sendGuildApplicationToapplicationChat(application);
   })
 });
