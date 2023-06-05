@@ -1,146 +1,337 @@
 <script lang="ts">
-  import { fade } from 'svelte/transition';
+  import { faArrowDown, faUser } from '@fortawesome/free-solid-svg-icons';
   import type { PageData } from './$types';
+  import Fa from 'svelte-fa';
+  import { env } from '$env/dynamic/public';
   import { goto, preloadData } from '$app/navigation';
+  import { fade, slide } from 'svelte/transition';
 
   export let data: PageData;
+  let armoryData = data.armoryCharacterData;
 
-  let filterString = '';
-
+  data.armoryCharacterData;
   const filter = (
-    entry: Awaited<typeof data.armory.characters>[number]
-  ): boolean => {
-    // Char name
-    if (entry.char.name.includes(filterString)) {
-      return true;
+    event: Event & {
+      currentTarget: EventTarget & HTMLInputElement;
     }
-    // User
-    else if (entry.user?.username.includes(filterString)) {
-      return true;
+  ) => {
+    const filterString = event.currentTarget.value;
+
+    armoryData = data.armoryCharacterData.filter(
+      ({ artifacts, char, discord, stats }) => {
+        // Discord username
+        if (
+          discord?.username
+            .toLocaleLowerCase()
+            .includes(filterString.toLocaleLowerCase())
+        )
+          return true;
+
+        // Character name
+        if (
+          char?.name
+            .toLocaleLowerCase()
+            .includes(filterString.toLocaleLowerCase())
+        )
+          return true;
+        // Class
+        if (
+          char?.class
+            .toLocaleLowerCase()
+            .includes(filterString.toLocaleLowerCase())
+        )
+          return true;
+
+        // Artifact name
+        if (
+          artifacts.filter(artifact =>
+            artifact.name
+              .toLocaleLowerCase()
+              .includes(filterString.toLocaleLowerCase())
+          ).length
+        )
+          return true;
+
+        return false;
+      }
+    );
+  };
+
+  type SortingBy = 'name' | 'class' | 'ilvl' | 'user' | 'none' | 'artifact';
+  type SortOrder = 'asc' | 'desc';
+  let sortOrder: SortOrder = 'asc';
+  let sortBy: SortingBy = 'none';
+
+  const sort = () => {
+    sortOrder = sortOrder === 'asc' ? 'desc' : 'asc';
+    let temp: typeof armoryData = [];
+
+    switch (sortBy) {
+      case 'class':
+        temp = armoryData.sort(({ char: char1 }, { char: char2 }) => {
+          if (char1.class < char2.class) {
+            return -1;
+          } else if (char1.class > char2.class) {
+            return 1;
+          }
+          return 0;
+        });
+        break;
+
+      case 'user':
+        temp = armoryData.sort(({ discord: user1 }, { discord: user2 }) => {
+          if (!user1 && !user2) return 0;
+          else if (!user1) return 1;
+          else if (!user2) return -1;
+          if (user1.username < user2.username) {
+            return -1;
+          } else if (user1.username > user2.username) {
+            return 1;
+          }
+          return 0;
+        });
+        break;
+
+      case 'ilvl':
+        temp = armoryData.sort(({ stats: stats1 }, { stats: stats2 }) => {
+          if (stats1.ilevel < stats2.ilevel) {
+            return -1;
+          } else if (stats1.ilevel > stats2.ilevel) {
+            return 1;
+          }
+          return 0;
+        });
+        break;
+
+      case 'name':
+        temp = armoryData.sort(({ char: char1 }, { char: char2 }) => {
+          if (char1.name < char2.name) {
+            return -1;
+          } else if (char1.name > char2.name) {
+            return 1;
+          }
+          return 0;
+        });
+        break;
+
+      case 'artifact':
+        temp = armoryData.sort(
+          ({ artifacts: artifact1 }, { artifacts: artifact2 }) => {
+            if (!artifact1 && !artifact2) return 0;
+            else if (artifact1 && !artifact2) return 1;
+            else if (!artifact1 && artifact2) return -1;
+
+            const maxArtifact1 = Math.max(
+              ...artifact1.map(artifact => artifact.traits)
+            );
+            const maxArtifact2 = Math.max(
+              ...artifact2.map(artifact => artifact.traits)
+            );
+            if (maxArtifact1 < maxArtifact2) {
+              return -1;
+            } else if (maxArtifact1 > maxArtifact2) {
+              return 1;
+            }
+            return 0;
+          }
+        );
+        break;
+      default:
+        break;
     }
-    // Artifact traits
-    else if (
-      entry.artifacts?.filter(artifact =>
-        artifact.traits.toString().includes(filterString)
-      ).length
-    ) {
-      return true;
+
+    switch (sortOrder) {
+      case 'asc':
+        armoryData = temp;
+        break;
+      case 'desc':
+        armoryData = temp.reverse();
     }
-    // Class anem
-    else if (entry.char.class.includes(filterString)) {
-      return true;
-    }
-    // Artifact name
-    else if (
-      entry.artifacts?.filter(artifact => artifact.name.includes(filterString))
-        .length
-    ) {
-      return true;
-    } else if (entry.stats.ilevel > +filterString) {
-      return true;
-    }
-    return false;
   };
 </script>
 
-<section class="grid">
-  {#await data.armory.characters}
-    <div transition:fade={{ duration: 500 }} role="status">
-      <svg
-        aria-hidden="true"
-        class="fill-primary mr-2 h-20 w-20 animate-spin"
-        viewBox="0 0 100 101"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg">
-        <path
-          d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z"
-          fill="currentColor" />
-        <path
-          d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z"
-          fill="currentFill" />
-      </svg>
-      <span class="sr-only">Loading...</span>
-    </div>
-  {:then characters}
-    <div
-      class="form-control min-h-screen min-w-[860px] gap-y-8"
-      in:fade={{ delay: 500 }}>
-      <input
-        bind:value={filterString}
-        type="text"
-        placeholder="Filter..."
-        class="input input-bordered placeholder:opacity-40" />
-      <div class="border-primary roudned-md overflow-x-auto border-2">
-        <table class="table-zebra table w-full">
-          <thead>
-            <tr>
-              <th class="w-40">User</th>
-              <th>Name</th>
-              <th>Class</th>
-              <th>ilvl</th>
-              <th>Traits</th>
+<svelte:head>
+  <title>Armory</title>
+  <link rel="canonical" href={`${env.PUBLIC_ORIGIN_URL}/armory`} />
+</svelte:head>
+
+<section
+  class="form-control min-h-full max-w-full items-center gap-y-4 overflow-hidden">
+  <input
+    type="text"
+    placeholder="Filter..."
+    on:input={filter}
+    class="input border-primary sticky top-0 z-50 w-full border-[1px]" />
+  {#if armoryData.length}
+    <div class="w-full overflow-x-auto">
+      <table class="table-zebra table min-w-[1000px]">
+        <thead>
+          <tr>
+            <!-- User -->
+            <th
+              on:click={() => {
+                sortBy = 'user';
+                sort();
+              }}
+              class="!relative flex cursor-pointer items-center gap-x-4">
+              <p>User</p>
+              {#if sortBy === 'user'}
+                <div transition:fade>
+                  <Fa
+                    icon={faArrowDown}
+                    size="1.4x"
+                    class={`text-primary ${
+                      sortOrder === 'asc' ? '' : 'rotate-180'
+                    } duration-500`} />
+                </div>
+              {/if}
+            </th>
+
+            <!-- Name -->
+            <th
+              on:click={() => {
+                sortBy = 'name';
+                sort();
+              }}
+              class="cursor-pointer">
+              <div class="flex items-center gap-x-2">
+                <p>Name</p>
+                {#if sortBy === 'name'}
+                  <div transition:fade>
+                    <Fa
+                      icon={faArrowDown}
+                      size="1.4x"
+                      class={`text-primary ${
+                        sortOrder === 'asc' ? '' : 'rotate-180'
+                      } duration-500`} />
+                  </div>
+                {/if}
+              </div>
+            </th>
+
+            <!-- Class -->
+            <th
+              on:click={() => {
+                sortBy = 'class';
+                sort();
+              }}
+              class="cursor-pointer">
+              <div class="flex items-center gap-x-2">
+                <p>Class</p>
+                {#if sortBy === 'class'}
+                  <div transition:fade>
+                    <Fa
+                      icon={faArrowDown}
+                      size="1.4x"
+                      class={`text-primary ${
+                        sortOrder === 'asc' ? '' : 'rotate-180'
+                      } duration-500`} />
+                  </div>
+                {/if}
+              </div>
+            </th>
+
+            <!-- iLvl -->
+            <th
+              on:click={() => {
+                sortBy = 'ilvl';
+                sort();
+              }}
+              class="cursor-pointer">
+              <div class="flex items-center gap-x-2">
+                <p>iLvl</p>
+                {#if sortBy === 'ilvl'}
+                  <div transition:fade>
+                    <Fa
+                      icon={faArrowDown}
+                      size="1.4x"
+                      class={`text-primary ${
+                        sortOrder === 'asc' ? '' : 'rotate-180'
+                      } duration-500`} />
+                  </div>
+                {/if}
+              </div>
+            </th>
+
+            <!-- Artifact -->
+            <th
+              on:click={() => {
+                sortBy = 'artifact';
+                sort();
+              }}
+              class="cursor-pointer">
+              <div class="flex items-center gap-x-2">
+                <p>Artifact</p>
+                {#if sortBy === 'artifact'}
+                  <div transition:fade>
+                    <Fa
+                      icon={faArrowDown}
+                      size="1.4x"
+                      class={`text-primary ${
+                        sortOrder === 'asc' ? '' : 'rotate-180'
+                      } duration-500`} />
+                  </div>
+                {/if}
+              </div></th>
+            <th>Legos</th>
+          </tr>
+        </thead>
+        <tbody class="text-xs md:text-sm lg:text-base">
+          {#each armoryData as { artifacts, char, stats, discord }, i (char.id)}
+            {@const charSubPageLink = `/armory/${char.name}`}
+            <tr
+              class="cursor-pointer"
+              on:mouseenter={() => {
+                // This might overload the server
+                // preloadData(charSubPageLink);
+              }}
+              on:click={() => {
+                goto(charSubPageLink);
+              }}>
+              <td>
+                {#if discord}
+                  <div class="flex items-center gap-x-4">
+                    <img
+                      src={discord.avatar}
+                      alt="discord avatar"
+                      class="h-8 w-8 rounded-full" />
+                    <p>
+                      {discord.username}
+                    </p>
+                  </div>
+                {:else}
+                  <div class="flex items-center rounded-full pl-1">
+                    <Fa icon={faUser} size="2x" />
+                  </div>
+                {/if}
+              </td>
+              <td>
+                {char.name}
+              </td>
+              <td class="capitalize">
+                {char.class}
+              </td>
+              <td>
+                {stats.ilevel}
+              </td>
+              <td>
+                {#each artifacts as artifact}
+                  <p>
+                    <span class="text-primary">{artifact.traits}</span> - {artifact.name}
+                  </p>
+                {:else}
+                  <p class="text-primary">No data</p>
+                {/each}
+              </td>
+              <td>in dev </td>
             </tr>
-          </thead>
-          <tbody>
-            {#key filterString}
-              {#each characters.filter(filter) as { artifacts, char, stats, user }, i (char.id)}
-                <tr
-                  class="relative cursor-pointer"
-                  on:mouseenter={() => {
-                    preloadData(`/armory/${char.name}`);
-                  }}
-                  on:click={() => {
-                    goto(`/armory/${char.name}`);
-                  }}>
-                  <th
-                    ><ul class="flex items-center gap-x-2">
-                      <li>
-                        <img
-                          src={user?.avatar}
-                          class="h-8 w-8 rounded-full"
-                          alt="discord avatar" />
-                      </li>
-                      <li>
-                        <p>{user?.username || ''}</p>
-                      </li>
-                    </ul></th>
-                  <th>{char.name}</th>
-                  <td>
-                    <p class="capitalize">
-                      {char.class}
-                    </p></td>
-                  <td>
-                    <p class="text-primary">
-                      {stats.ilevel}
-                    </p></td>
-                  <td>
-                    <ul class="form-control gap-y-2">
-                      {#if artifacts && artifacts.length}
-                        {#each artifacts as artifact}
-                          <li>
-                            <p>
-                              <span class="text-primary">
-                                {artifact.traits}
-                              </span>
-                              -
-                              {artifact.name}
-                            </p>
-                          </li>
-                        {/each}
-                      {:else}
-                        <li>
-                          <p class="text-primary">No data</p>
-                        </li>
-                      {/if}
-                    </ul>
-                  </td>
-                </tr>
-                <!-- content here -->
-              {/each}
-            {/key}
-          </tbody>
-        </table>
-      </div>
+          {/each}
+        </tbody>
+      </table>
     </div>
-  {/await}
+  {:else}
+    <p class="text-primary text-center text-4xl font-bold">
+      No matches? Madge?
+    </p>
+  {/if}
 </section>

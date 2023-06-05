@@ -1,10 +1,10 @@
 import type { PageServerLoad } from './$types';
-import { getArmoryCharacters } from '$lib/pocketbase/models/armory';
+import * as armory from '$lib/pocketbase/models/armory';
 
 export const load: PageServerLoad = async () => {
+  const armoryCharacterData = armory.armoryCharacterData || [];
+
   return {
-    armory: {
-      characters: getArmoryCharacters()
-    }
+    armoryCharacterData
   };
 };
