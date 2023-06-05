@@ -20,7 +20,7 @@
     "@indecisive/types": "workspace:^0.0.1",
     "@sendgrid/mail": "^7.7.0",
     "@sveltejs/adapter-node": "1.2.4",
-    "@sveltejs/kit": "1.16.3",
+    "@sveltejs/kit": "1.20.1",
     "@trpc/client": "^10.25.1",
     "@types/d3": "^7.4.0",
     "@types/js-cookie": "^3.0.3",
