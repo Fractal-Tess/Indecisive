@@ -1,12 +1,12 @@
 import type { PageServerLoad } from './$types';
 import { pb } from '$lib/pocketbase/pocketbase';
-import type { PocketbaseRecord } from '@indecisive/types';
+import type { Record } from 'pocketbase';
 
-interface Expansion extends PocketbaseRecord {
+type Expansion = {
   label: string;
   thumbnail: string;
   expansion: string;
-}
+} & Record;
 
 export const load = (async ({ params, url }) => {
   const records = await pb

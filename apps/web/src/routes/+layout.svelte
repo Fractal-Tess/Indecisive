@@ -25,7 +25,7 @@
 
 <div class="heropattern-topography-white/10 form-control min-h-screen">
   <Header />
-  <main class="grid flex-1 place-items-center px-2 py-8">
+  <main class="grid w-full flex-1 place-items-center px-2 py-8">
     <slot />
   </main>
 </div>

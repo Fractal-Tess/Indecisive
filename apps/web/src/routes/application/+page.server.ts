@@ -1,30 +1,14 @@
 import type { Actions, PageServerLoad } from './$types';
-import { saveApplicationToDatabase } from '$lib/pocketbase/utils';
-import { recordImageToUrl } from '$lib/pocketbase/publicUtils';
+import { saveApplication } from '$lib/pocketbase/models/application';
+import { pocketbaseImageToUrl } from '$lib/pocketbase/publicUtils';
 import { validator } from '$lib/validation/application';
-import type { PocketbaseRecord } from '@indecisive/types';
 import { pb } from '$lib/pocketbase/pocketbase';
 import { sendApplicationToApplicationChat } from '$lib/trpc/application';
+import type { Record } from 'pocketbase';
 
-interface TextItem extends PocketbaseRecord {
+type TextItem = Record & {
   content: string;
-}
-
-interface ApplicationItem extends PocketbaseRecord {
-  age: number;
-  attendRaidDaysNotes: string;
-  classAndSpec: string;
-  country: string;
-  discord: string;
-  experience: string;
-  inGameName: string;
-  joinReason: string;
-  name: string;
-  notes: string;
-  uiScreenshot: string;
-  willingToPlayAnotherClass: string;
-  willingToPlayAnotherClassNotes: string;
-}
+};
 
 export const load = (async () => {
   const disclaimer = await pb
@@ -55,10 +39,8 @@ export const actions = {
       };
     }
 
-    const dbRecord = (await saveApplicationToDatabase(
-      application.data
-    )) as unknown as ApplicationItem;
-    const uiSreenshot = recordImageToUrl(dbRecord, dbRecord.uiScreenshot);
+    const pbRecord = await saveApplication(application.data);
+    const uiSreenshot = pocketbaseImageToUrl(pbRecord, pbRecord.uiScreenshot);
     await sendApplicationToApplicationChat(application.data, uiSreenshot);
 
     return {
