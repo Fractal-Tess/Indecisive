@@ -1,13 +1,4 @@
-import { env } from '$env/dynamic/private';
-import { env as envPub } from '$env/dynamic/public';
 import Pocketbase from 'pocketbase';
+import { PUBLIC_POCKETBASE_URL } from '$env/static/public';
 
-export const pb = new Pocketbase(envPub.PUBLIC_POCKETBASE_URL);
-
-export const initPocketbase = async () => {
-  await pb.admins.authWithPassword(
-    env.POCKETBASE_USER_EMAIL,
-    env.POCKETBASE_USER_PASSWORD
-  );
-  pb.autoCancellation(false);
-};
+export const pb = new Pocketbase(PUBLIC_POCKETBASE_URL);
