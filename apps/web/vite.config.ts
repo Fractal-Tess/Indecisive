@@ -23,8 +23,8 @@ const config: UserConfig = {
   },
   build: {
     target: ['esnext']
-  },
-  optimizeDeps: { esbuildOptions: { target: 'esnext' } }
+  }
+  // optimizeDeps: { esbuildOptions: { target: 'esnext' } }
 };
 
 export default config;

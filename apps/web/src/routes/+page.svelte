@@ -4,6 +4,10 @@
 
   let mounted = false;
   onMount(() => (mounted = true));
+
+  onMount(() => {
+    const source = ``;
+  });
 </script>
 
 <section

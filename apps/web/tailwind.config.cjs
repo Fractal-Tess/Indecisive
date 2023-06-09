@@ -25,7 +25,7 @@ const config = {
     themes: [
       {
         dark: {
-          ...require('daisyui/src/colors/themes')['[data-theme=black]'],
+          ...require('daisyui/src/theming/themes')['[data-theme=black]'],
           primary: '#facc15',
           secondary: '#E8456B',
           accent: '#3AE8C4',
