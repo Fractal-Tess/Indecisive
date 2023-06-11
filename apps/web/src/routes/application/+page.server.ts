@@ -12,10 +12,10 @@ type TextItem = Record & {
 
 export const load = (async () => {
   const disclaimer = await pb
-    .collection('text')
+    .collection('CMS')
     .getFirstListItem<TextItem>("unit='application_disclaimer_page'");
   const wanted = await pb
-    .collection('text')
+    .collection('CMS')
     .getFirstListItem<TextItem>("unit='wanted_classes'");
 
   return {
