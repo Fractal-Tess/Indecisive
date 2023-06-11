@@ -13,7 +13,7 @@ type Item = {
 
 export const load = (async () => {
   const text = await pb
-    .collection('text')
+    .collection('CMS')
     .getFirstListItem<Item>("unit='contact_page'");
   return {
     content: text.content
