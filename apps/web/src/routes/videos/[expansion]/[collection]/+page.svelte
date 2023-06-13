@@ -1,6 +1,6 @@
 <script lang="ts">
   import type { PageData } from './$types';
-  import { env } from '$env/dynamic/public';
+  import { PUBLIC_POCKETBASE_URL } from '$env/static/public';
   import { page } from '$app/stores';
 
   import Image from '$lib/components/Collection.svelte';
@@ -17,7 +17,7 @@
     {#each data.videos as video}
       <a href={`${$page.url.pathname}/${video.label}`}>
         {#if video.thumbnail}
-          {@const thumbnail = `${env.PUBLIC_POCKETBASE_URL}/api/files/${video.collectionId}/${video.id}/${video.thumbnail}?thumb=500x282`}
+          {@const thumbnail = `${PUBLIC_POCKETBASE_URL}/api/files/${video.collectionId}/${video.id}/${video.thumbnail}?thumb=500x282`}
 
           <Image {thumbnail} label={video.label} />
         {:else}

@@ -2,7 +2,7 @@
   import { faArrowDown, faUser } from '@fortawesome/free-solid-svg-icons';
   import type { PageData } from './$types';
   import Fa from 'svelte-fa';
-  import { env } from '$env/dynamic/public';
+  import { PUBLIC_ORIGIN_URL } from '$env/static/public';
   import { goto, preloadData } from '$app/navigation';
   import { fade, slide } from 'svelte/transition';
   import Center from '$lib/components/Center.svelte';
@@ -154,7 +154,7 @@
 
 <svelte:head>
   <title>Armory</title>
-  <link rel="canonical" href={`${env.PUBLIC_ORIGIN_URL}/armory`} />
+  <link rel="canonical" href={`${PUBLIC_ORIGIN_URL}/armory`} />
 </svelte:head>
 
 <Center>
