@@ -1,11 +1,11 @@
 import { createTRPCProxyClient, httpBatchLink } from '@trpc/client';
 import type { AppRouter } from '../../../../bot/src/trpc/trpc';
-import { env } from '$env/dynamic/private';
+import { PUBLIC_TRPC_URL } from '$env/static/public';
 
 export const trpc = createTRPCProxyClient<AppRouter>({
   links: [
     httpBatchLink({
-      url: env.TRPC_URL
+      url: PUBLIC_TRPC_URL
     })
   ]
 });
