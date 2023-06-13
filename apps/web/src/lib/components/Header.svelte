@@ -1,8 +1,10 @@
 <script lang="ts">
   import Logo from '$lib/components/Logo.svelte';
-  import { user } from '$lib/pocketbase/user';
   import { faBarsStaggered, faUser } from '@fortawesome/free-solid-svg-icons';
   import Fa from 'svelte-fa';
+  import { getContext } from 'svelte';
+  import type { createUserStore } from '$lib/stores/user';
+  const user = getContext('user') as ReturnType<typeof createUserStore>;
 </script>
 
 <navbar class="navbar bg-base-100">
@@ -35,7 +37,7 @@
       <ul
         tabindex="0"
         class="max-md:menu dropdown-content max-md:bg-base-100 max-md:rounded-box
-        max-md:[&>li>*:hover]:!text-primary md:text-primary md:link z-[999] flex gap-x-4
+        max-md:[&>li>*:hover]:!text-primary md:text-primary z-[999] flex gap-x-4
         whitespace-nowrap font-bold max-md:w-52">
         <li><a href="/videos">Videos</a></li>
         <li><a href="/application">Application</a></li>
@@ -45,10 +47,9 @@
         <li><a href="/weakauras">WeakAuras</a></li>
         <li><a href="/about">About</a></li>
         <li><a href="/contact">Contact</a></li>
-        <li class="divider md:divider-horizontal md:-mx-2" />
-        {#if $user}
-          <li><button on:click={user.logout}>Logout</button></li>
-        {:else}
+        <li
+          class="divider md:divider-horizontal cursor-default max-md:hidden md:-mx-2" />
+        {#if !$user}
           <li><a href="/sign-in">Login/Register</a></li>
         {/if}
       </ul>
