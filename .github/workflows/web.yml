@@ -51,6 +51,10 @@ jobs:
         run: pnpm install --frozen-lockfile
 
       - name: Build
+        env: |
+          PUBLIC_TRPC_URL: ${{ vars.PUBLIC_TRPC_URL }}
+          PUBLIC_POCKETBASE_URL: ${{ vars.PUBLIC_POCKETBASE_URL }}
+          PUBLIC_ORIGIN_URL: ${{ vars.PUBLIC_ORIGIN_URL }}
         run: pnpm turbo run build --filter @indecisive/web
 
       - uses: a7ul/tar-action@v1.1.0
