@@ -11,6 +11,7 @@ on:
 
 jobs:
   build-and-deploy:
+    environment: release
     name: Build & Deploy
     runs-on: ubuntu-latest
 
@@ -50,7 +51,6 @@ jobs:
         run: pnpm install --frozen-lockfile
 
       - name: Build
-        environment: release
         run: pnpm turbo run build --filter @indecisive/web
 
       - uses: a7ul/tar-action@v1.1.0
