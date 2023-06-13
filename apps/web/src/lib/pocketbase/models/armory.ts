@@ -2,6 +2,7 @@ import type { Record } from 'pocketbase';
 import { pb } from '$lib/pocketbase/pocketbase';
 import type { Character, Artifact, Stats } from '@indecisive/types';
 import { trpc } from '$lib/trpc/client';
+import { building } from '$app/environment';
 
 const getArmoryCharacters = async () => {
   type ExpandedSnapshot = {
@@ -69,9 +70,10 @@ export let armoryCharacterData: Awaited<
   ReturnType<typeof getArmoryCharacters>
 > | null = null;
 
-const time = 1800000;
-armoryCharacterData = await getArmoryCharacters();
-
-setInterval(async () => {
+if (!building) {
+  const time = 1800000;
+  setInterval(async () => {
+    armoryCharacterData = await getArmoryCharacters();
+  }, time);
   armoryCharacterData = await getArmoryCharacters();
-}, time);
+}
