@@ -7,13 +7,13 @@
     "dev": "nodemon"
   },
   "dependencies": {
-    "@tsconfig/node18": "^2.0.0",
+    "@tsconfig/node18": "^2.0.1",
     "cheerio": "1.0.0-rc.12",
-    "dotenv": "^16.0.3",
-    "pocketbase": "^0.14.4",
+    "dotenv": "^16.1.4",
+    "pocketbase": "^0.15.2",
     "ts-node": "^10.9.1",
     "tsup": "^6.7.0",
-    "typescript": "^5.0.4",
+    "typescript": "^5.1.3",
     "zod": "^3.21.4"
   },
   "devDependencies": {

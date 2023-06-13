@@ -1,5 +1,4 @@
 import type { PageServerLoad } from './$types';
-import { pb } from '$lib/pocketbase/pocketbase';
 import type { Record } from 'pocketbase';
 
 type Item = {
@@ -7,8 +6,8 @@ type Item = {
   thumbnail: string;
 } & Record;
 
-export const load = (async () => {
-  const record = await pb.collection('expansion').getFullList<Item>();
+export const load = (async ({ locals }) => {
+  const record = await locals.pb.collection('expansion').getFullList<Item>();
   return {
     expansions: structuredClone(record)
   };

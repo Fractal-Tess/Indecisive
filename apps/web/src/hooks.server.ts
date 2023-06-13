@@ -1,15 +1,28 @@
+import { PUBLIC_POCKETBASE_URL } from '$env/static/public';
 import type { Handle } from '@sveltejs/kit';
-import { validateEnv } from '$lib/validation/env';
-import { initPocketbase } from '$lib/pocketbase/pocketbase';
-import { building } from '$app/environment';
-import { startArmoryCache } from '$lib/pocketbase/models/armory';
-
-if (!building) {
-  validateEnv();
-  await initPocketbase();
-  startArmoryCache();
-}
+import PocketBase from 'pocketbase';
 
 export const handle: Handle = async ({ event, resolve }) => {
-  return resolve(event);
+  const pb = new PocketBase(PUBLIC_POCKETBASE_URL);
+
+  pb.authStore.loadFromCookie(event.request.headers.get('cookie') || '');
+
+  if (pb.authStore.isValid && pb.authStore.model)
+    event.locals.user = {
+      accessToken: pb.authStore.model.accessToken,
+      avatarUrl: pb.authStore.model.avatarUrl,
+      email: pb.authStore.model.email,
+      refreshToken: pb.authStore.model.refreshToken,
+      username: pb.authStore.model.username,
+      discordId: pb.authStore.model.discordId
+    };
+  else event.locals.user = null;
+  event.locals.pb = pb;
+
+  const response = await resolve(event);
+  response.headers.set(
+    'set-cookie',
+    pb.authStore.exportToCookie({ httpOnly: false })
+  );
+  return response;
 };

@@ -1,5 +1,5 @@
 import type { Application } from '@indecisive/types';
-import { pb } from '../pocketbase';
+import { pb } from '$lib/pocketbase/pocketbase';
 import type { Record } from 'pocketbase';
 
 export const saveApplication = async (record: Application) => {

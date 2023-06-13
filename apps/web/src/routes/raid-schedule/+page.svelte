@@ -1,12 +1,13 @@
 <script lang="ts">
   import { fade } from 'svelte/transition';
-  import Center from '$lib/components/Center.svelte';
+
   import type { PageData } from './$types';
+  import Center from '$lib/components/Center.svelte';
   export let data: PageData;
 </script>
 
 <Center>
-  <article class="p-8 text-xl md:text-2xl [&>section>h1]:text-5xl">
+  <article class="p-8 text-xl md:text-2xl [&_h2]:text-4xl">
     {#await data.content.html then html}
       <div in:fade>
         {@html html}

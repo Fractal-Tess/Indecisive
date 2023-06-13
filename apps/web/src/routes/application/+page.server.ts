@@ -1,6 +1,6 @@
 import type { Actions, PageServerLoad } from './$types';
 import { saveApplication } from '$lib/pocketbase/models/application';
-import { pocketbaseImageToUrl } from '$lib/pocketbase/publicUtils';
+import { pocketbaseImageToUrl } from '$lib/pocketbase/utils';
 import { validator } from '$lib/validation/application';
 import { pb } from '$lib/pocketbase/pocketbase';
 import { sendApplicationToApplicationChat } from '$lib/trpc/application';
