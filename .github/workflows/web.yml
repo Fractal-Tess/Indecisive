@@ -50,6 +50,7 @@ jobs:
         run: pnpm install --frozen-lockfile
 
       - name: Build
+        environment: release
         run: pnpm turbo run build --filter @indecisive/web
 
       - uses: a7ul/tar-action@v1.1.0
