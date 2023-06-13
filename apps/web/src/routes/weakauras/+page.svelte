@@ -1,5 +1,5 @@
 <script lang="ts">
-  import type { PageData } from './$types';
-
-  export let data: PageData;
+  import DevPlaceholder from '$lib/components/DevPlaceholder.svelte';
 </script>
+
+<DevPlaceholder />

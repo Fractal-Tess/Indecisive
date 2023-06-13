@@ -69,11 +69,9 @@ export let armoryCharacterData: Awaited<
   ReturnType<typeof getArmoryCharacters>
 > | null = null;
 
-export const startArmoryCache = async () => {
-  const time = 1800000;
-  armoryCharacterData = await getArmoryCharacters();
+const time = 1800000;
+armoryCharacterData = await getArmoryCharacters();
 
-  setInterval(async () => {
-    armoryCharacterData = await getArmoryCharacters();
-  }, time);
-};
+setInterval(async () => {
+  armoryCharacterData = await getArmoryCharacters();
+}, time);

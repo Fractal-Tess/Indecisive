@@ -42,9 +42,11 @@
         <li><a href="/videos">Videos</a></li>
         <li><a href="/application">Application</a></li>
         <li><a href="/raid-schedule">Raid Schedule</a></li>
-        <li><a href="/armory">Armory</a></li>
-        <li><a href="/addons">Addons</a></li>
-        <li><a href="/weakauras">WeakAuras</a></li>
+        {#if $user}
+          <li><a href="/armory">Armory</a></li>
+          <li><a href="/addons">Addons</a></li>
+          <li><a href="/weakauras">WeakAuras</a></li>
+        {/if}
         <li><a href="/about">About</a></li>
         <li><a href="/contact">Contact</a></li>
         <li

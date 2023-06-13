@@ -5,6 +5,8 @@
   import { env } from '$env/dynamic/public';
   import { goto, preloadData } from '$app/navigation';
   import { fade, slide } from 'svelte/transition';
+  import Center from '$lib/components/Center.svelte';
+  import Spinner from '$lib/components/Spinner.svelte';
 
   export let data: PageData;
   let armoryData = data.armoryCharacterData;
@@ -155,183 +157,186 @@
   <link rel="canonical" href={`${env.PUBLIC_ORIGIN_URL}/armory`} />
 </svelte:head>
 
-<section
-  class="form-control min-h-full max-w-full items-center gap-y-4 overflow-hidden">
-  <input
-    type="text"
-    placeholder="Filter..."
-    on:input={filter}
-    class="input border-primary sticky top-0 z-50 w-full border-[1px]" />
-  {#if armoryData.length}
-    <div class="w-full overflow-x-auto">
-      <table class="table-zebra table min-w-[1000px]">
-        <thead>
-          <tr>
-            <!-- User -->
-            <th
-              on:click={() => {
-                sortBy = 'user';
-                sort();
-              }}
-              class="!relative flex cursor-pointer items-center gap-x-4">
-              <p>User</p>
-              {#if sortBy === 'user'}
-                <div transition:fade>
-                  <Fa
-                    icon={faArrowDown}
-                    size="1.4x"
-                    class={`text-primary ${
-                      sortOrder === 'asc' ? '' : 'rotate-180'
-                    } duration-500`} />
+<Center>
+  <section
+    class="form-control min-h-full max-w-full items-center gap-y-4 overflow-hidden">
+    <input
+      type="text"
+      placeholder="Filter..."
+      on:input={filter}
+      class="input border-primary sticky top-0 z-50 w-full border-[1px]" />
+    {#if armoryData.length}
+      <div class="w-full overflow-x-auto">
+        <table
+          class="table-zebra border-primary rounded-box bg-base-100 table min-w-[1000px] border-2">
+          <thead>
+            <tr>
+              <!-- User -->
+              <th
+                on:click={() => {
+                  sortBy = 'user';
+                  sort();
+                }}
+                class="!relative flex cursor-pointer items-center gap-x-4">
+                <p>User</p>
+                {#if sortBy === 'user'}
+                  <div transition:fade>
+                    <Fa
+                      icon={faArrowDown}
+                      size="1.4x"
+                      class={`text-primary ${
+                        sortOrder === 'asc' ? '' : 'rotate-180'
+                      } duration-500`} />
+                  </div>
+                {/if}
+              </th>
+
+              <!-- Name -->
+              <th
+                on:click={() => {
+                  sortBy = 'name';
+                  sort();
+                }}
+                class="cursor-pointer">
+                <div class="flex items-center gap-x-2">
+                  <p>Name</p>
+                  {#if sortBy === 'name'}
+                    <div transition:fade>
+                      <Fa
+                        icon={faArrowDown}
+                        size="1.4x"
+                        class={`text-primary ${
+                          sortOrder === 'asc' ? '' : 'rotate-180'
+                        } duration-500`} />
+                    </div>
+                  {/if}
                 </div>
-              {/if}
-            </th>
+              </th>
 
-            <!-- Name -->
-            <th
-              on:click={() => {
-                sortBy = 'name';
-                sort();
-              }}
-              class="cursor-pointer">
-              <div class="flex items-center gap-x-2">
-                <p>Name</p>
-                {#if sortBy === 'name'}
-                  <div transition:fade>
-                    <Fa
-                      icon={faArrowDown}
-                      size="1.4x"
-                      class={`text-primary ${
-                        sortOrder === 'asc' ? '' : 'rotate-180'
-                      } duration-500`} />
-                  </div>
-                {/if}
-              </div>
-            </th>
+              <!-- Class -->
+              <th
+                on:click={() => {
+                  sortBy = 'class';
+                  sort();
+                }}
+                class="cursor-pointer">
+                <div class="flex items-center gap-x-2">
+                  <p>Class</p>
+                  {#if sortBy === 'class'}
+                    <div transition:fade>
+                      <Fa
+                        icon={faArrowDown}
+                        size="1.4x"
+                        class={`text-primary ${
+                          sortOrder === 'asc' ? '' : 'rotate-180'
+                        } duration-500`} />
+                    </div>
+                  {/if}
+                </div>
+              </th>
 
-            <!-- Class -->
-            <th
-              on:click={() => {
-                sortBy = 'class';
-                sort();
-              }}
-              class="cursor-pointer">
-              <div class="flex items-center gap-x-2">
-                <p>Class</p>
-                {#if sortBy === 'class'}
-                  <div transition:fade>
-                    <Fa
-                      icon={faArrowDown}
-                      size="1.4x"
-                      class={`text-primary ${
-                        sortOrder === 'asc' ? '' : 'rotate-180'
-                      } duration-500`} />
-                  </div>
-                {/if}
-              </div>
-            </th>
+              <!-- iLvl -->
+              <th
+                on:click={() => {
+                  sortBy = 'ilvl';
+                  sort();
+                }}
+                class="cursor-pointer">
+                <div class="flex items-center gap-x-2">
+                  <p>iLvl</p>
+                  {#if sortBy === 'ilvl'}
+                    <div transition:fade>
+                      <Fa
+                        icon={faArrowDown}
+                        size="1.4x"
+                        class={`text-primary ${
+                          sortOrder === 'asc' ? '' : 'rotate-180'
+                        } duration-500`} />
+                    </div>
+                  {/if}
+                </div>
+              </th>
 
-            <!-- iLvl -->
-            <th
-              on:click={() => {
-                sortBy = 'ilvl';
-                sort();
-              }}
-              class="cursor-pointer">
-              <div class="flex items-center gap-x-2">
-                <p>iLvl</p>
-                {#if sortBy === 'ilvl'}
-                  <div transition:fade>
-                    <Fa
-                      icon={faArrowDown}
-                      size="1.4x"
-                      class={`text-primary ${
-                        sortOrder === 'asc' ? '' : 'rotate-180'
-                      } duration-500`} />
-                  </div>
-                {/if}
-              </div>
-            </th>
-
-            <!-- Artifact -->
-            <th
-              on:click={() => {
-                sortBy = 'artifact';
-                sort();
-              }}
-              class="cursor-pointer">
-              <div class="flex items-center gap-x-2">
-                <p>Artifact</p>
-                {#if sortBy === 'artifact'}
-                  <div transition:fade>
-                    <Fa
-                      icon={faArrowDown}
-                      size="1.4x"
-                      class={`text-primary ${
-                        sortOrder === 'asc' ? '' : 'rotate-180'
-                      } duration-500`} />
-                  </div>
-                {/if}
-              </div></th>
-            <th>Legos</th>
-          </tr>
-        </thead>
-        <tbody class="text-xs md:text-sm lg:text-base">
-          {#each armoryData as { artifacts, char, stats, discord }, i (char.id)}
-            {@const charSubPageLink = `/armory/${char.name}`}
-            <tr
-              class="cursor-pointer"
-              on:mouseenter={() => {
-                // This might overload the server
-                // preloadData(charSubPageLink);
-              }}
-              on:click={() => {
-                goto(charSubPageLink);
-              }}>
-              <td>
-                {#if discord}
-                  <div class="flex items-center gap-x-4">
-                    <img
-                      src={discord.avatar}
-                      alt="discord avatar"
-                      class="h-8 w-8 rounded-full" />
-                    <p>
-                      {discord.username}
-                    </p>
-                  </div>
-                {:else}
-                  <div class="flex items-center rounded-full pl-1">
-                    <Fa icon={faUser} size="2x" />
-                  </div>
-                {/if}
-              </td>
-              <td>
-                {char.name}
-              </td>
-              <td class="capitalize">
-                {char.class}
-              </td>
-              <td>
-                {stats.ilevel}
-              </td>
-              <td>
-                {#each artifacts as artifact}
-                  <p>
-                    <span class="text-primary">{artifact.traits}</span> - {artifact.name}
-                  </p>
-                {:else}
-                  <p class="text-primary">No data</p>
-                {/each}
-              </td>
-              <td>in dev </td>
+              <!-- Artifact -->
+              <th
+                on:click={() => {
+                  sortBy = 'artifact';
+                  sort();
+                }}
+                class="cursor-pointer">
+                <div class="flex items-center gap-x-2">
+                  <p>Artifact</p>
+                  {#if sortBy === 'artifact'}
+                    <div transition:fade>
+                      <Fa
+                        icon={faArrowDown}
+                        size="1.4x"
+                        class={`text-primary ${
+                          sortOrder === 'asc' ? '' : 'rotate-180'
+                        } duration-500`} />
+                    </div>
+                  {/if}
+                </div></th>
+              <th>Legos</th>
             </tr>
-          {/each}
-        </tbody>
-      </table>
-    </div>
-  {:else}
-    <p class="text-primary text-center text-4xl font-bold">
-      No matches? Madge?
-    </p>
-  {/if}
-</section>
+          </thead>
+          <tbody class="text-xs md:text-sm lg:text-base">
+            {#each armoryData as { artifacts, char, stats, discord }, i (char.id)}
+              {@const charSubPageLink = `/armory/${char.name}`}
+              <tr
+                class="cursor-pointer"
+                on:mouseenter={() => {
+                  // This might overload the server
+                  // preloadData(charSubPageLink);
+                }}
+                on:click={() => {
+                  goto(charSubPageLink);
+                }}>
+                <td>
+                  {#if discord}
+                    <div class="flex items-center gap-x-4">
+                      <img
+                        src={discord.avatar}
+                        alt="discord avatar"
+                        class="h-8 w-8 rounded-full" />
+                      <p>
+                        {discord.username}
+                      </p>
+                    </div>
+                  {:else}
+                    <div class="flex items-center rounded-full pl-1">
+                      <Fa icon={faUser} size="2x" />
+                    </div>
+                  {/if}
+                </td>
+                <td>
+                  {char.name}
+                </td>
+                <td class="capitalize">
+                  {char.class}
+                </td>
+                <td>
+                  {stats.ilevel}
+                </td>
+                <td>
+                  {#each artifacts as artifact}
+                    <p>
+                      <span class="text-primary">{artifact.traits}</span> - {artifact.name}
+                    </p>
+                  {:else}
+                    <p class="text-primary">No data</p>
+                  {/each}
+                </td>
+                <td><Spinner class="w-12" /></td>
+              </tr>
+            {/each}
+          </tbody>
+        </table>
+      </div>
+    {:else}
+      <p class="text-primary text-center text-4xl font-bold">
+        No matches? Madge?
+      </p>
+    {/if}
+  </section>
+</Center>
