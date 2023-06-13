@@ -1,19 +1,21 @@
 <script lang="ts">
-  import { env } from '$env/dynamic/public';
+  import { PUBLIC_ORIGIN_URL } from '$env/static/public';
   export let title = 'Indecisive';
   export let description = 'Indecisive guild website.';
 
-  const logoUrl = `${env.PUBLIC_ORIGIN_URL}/logo.png`;
+  const logoUrl = `${PUBLIC_ORIGIN_URL}/logo.png`;
 </script>
 
 <svelte:head>
+  <title>{title}</title>
+
   <meta name="description" content={description} />
 
   <meta itemprop="name" content={title} />
   <meta itemprop="description" content={description} />
   <meta itemprop="image" content={logoUrl} />
 
-  <meta property="og:url" content={env.PUBLIC_ORIGIN_URL} />
+  <meta property="og:url" content={PUBLIC_ORIGIN_URL} />
   <meta property="og:type" content="website" />
   <meta property="og:title" content={title} />
   <meta property="og:description" content={description} />
