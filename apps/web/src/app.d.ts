@@ -3,7 +3,9 @@ declare namespace App {
     pb: import('pocketbase').default;
     user: import('$lib/stores/user').User | null;
   }
-  // interface PageData {}
+  interface PageData {
+    flash?: { type: 'success' | 'error'; message: string };
+  }
   // interface Error {}
   // interface Platform {}
 }
