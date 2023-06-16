@@ -1,3 +1,4 @@
+import { invalidateAll } from '$app/navigation';
 import { pb } from '$lib/pocketbase/pocketbase';
 
 pb.authStore.loadFromCookie(document.cookie);
@@ -6,5 +7,6 @@ pb.authStore.onChange(() => {
     httpOnly: false,
     secure: false
   });
+  invalidateAll();
 });
 if (pb.authStore.isValid) pb.collection('users').authRefresh();
