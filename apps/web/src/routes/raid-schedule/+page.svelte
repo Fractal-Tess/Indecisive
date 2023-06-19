@@ -7,7 +7,7 @@
 </script>
 
 <Center>
-  <article class="p-8 text-xl md:text-2xl [&_h2]:text-4xl">
+  <article class="select-none p-8 text-xl md:text-2xl [&_h2]:text-4xl">
     {#await data.content.html then html}
       <div in:fade>
         {@html html}
