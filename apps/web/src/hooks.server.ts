@@ -14,7 +14,8 @@ export const handle: Handle = async ({ event, resolve }) => {
       email: pb.authStore.model.email,
       refreshToken: pb.authStore.model.refreshToken,
       username: pb.authStore.model.username,
-      discordId: pb.authStore.model.discordId
+      discordId: pb.authStore.model.discordId,
+      id: pb.authStore.model.id
     };
   else event.locals.user = null;
   event.locals.pb = pb;
