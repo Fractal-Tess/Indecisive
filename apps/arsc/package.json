@@ -7,7 +7,7 @@
     "dev": "nodemon"
   },
   "dependencies": {
-    "@tsconfig/node18": "^2.0.1",
+    "@tsconfig/node18": "^18.2.0",
     "cheerio": "1.0.0-rc.12",
     "dotenv": "^16.1.4",
     "pocketbase": "^0.15.2",
