@@ -11,7 +11,7 @@
     "format": "prettier --plugin-search-dir=../../ --ignore-path=../../.prettierignore --write ."
   },
   "devDependencies": {
-    "@changesets/cli": "^2.26.1",
+    "@changesets/cli": "^2.26.2",
     "@fontsource/roboto": "^5.0.2",
     "@fortawesome/fontawesome-svg-core": "^6.4.0",
     "@fortawesome/free-brands-svg-icons": "^6.4.0",
