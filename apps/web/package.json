@@ -35,7 +35,7 @@
     "eslint": "^8.42.0",
     "js-cookie": "^3.0.5",
     "lint-staged": "^13.2.2",
-    "pocketbase": "^0.15.2",
+    "pocketbase": "^0.17.3",
     "postcss": "^8.4.24",
     "postcss-load-config": "^4.0.1",
     "svelte": "^3.59.1",
