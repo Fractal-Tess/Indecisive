@@ -1,11 +1,10 @@
-import { PUBLIC_POCKETBASE_URL } from '$env/static/public';
+import { createPb } from '$lib/pocketbase';
 import type { Handle } from '@sveltejs/kit';
-import PocketBase from 'pocketbase';
 
 export const handle: Handle = async ({ event, resolve }) => {
-  const pb = new PocketBase(PUBLIC_POCKETBASE_URL);
+  const pbToken = event.request.headers.get('cookie') || ''
+  const pb = createPb(pbToken)
 
-  pb.authStore.loadFromCookie(event.request.headers.get('cookie') || '');
 
   if (pb.authStore.isValid && pb.authStore.model)
     event.locals.user = {

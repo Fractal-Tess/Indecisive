@@ -1,8 +1,6 @@
 <script lang="ts">
   import Center from '$lib/components/Center.svelte';
-  import type { ActionData, PageData } from './$types';
-
-  export let form: ActionData;
+  import type { PageData } from './$types';
 
   export let data: PageData;
 

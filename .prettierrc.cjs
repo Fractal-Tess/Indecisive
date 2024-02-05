@@ -9,7 +9,7 @@ module.exports = {
   tabWidth: 2,
   useTabs: false,
   semi: true,
-  plugins: ['prettier-plugin-svelte', 'prettier-plugin-tailwindcss'],
+  plugins: ['prettier-plugin-svelte'],
   overrides: [{ files: '*.svelte', options: { parser: 'svelte' } }],
   pluginSearchDirs: ['./'],
   endOfLine: 'lf'

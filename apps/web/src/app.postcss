@@ -4,28 +4,25 @@
 @tailwind components;
 @tailwind utilities;
 
-html {
-  -webkit-font-smoothing: antialiased;
+@layer base{
+
+  
+  html {
+    -webkit-font-smoothing: antialiased;
+  }
+
+  body{
+    @apply heropattern-topography-white/10 h-screen flex flex-col;
+  }
 }
+
+
 
 @layer utilities {
   /* Class is used for development purposes only */
   .dev {
     @apply border-[1px];
   }
-  .devo {
-    @apply outline-primary outline outline-dashed outline-1;
-  }
+
 }
 
-@layer base {
-  input[type='number']::-webkit-inner-spin-button,
-  input[type='number']::-webkit-outer-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
-  }
-}
-
-input[type='number'] {
-  -moz-appearance: textfield;
-}

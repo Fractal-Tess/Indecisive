@@ -3,7 +3,7 @@ import Pocketbase from 'pocketbase';
 import { browser } from '$app/environment';
 import { PUBLIC_POCKETBASE_URL } from '$env/static/public';
 import { pb as pbClient } from '$lib/pocketbase/pocketbase';
-import { getCms } from '$lib/pocketbase/models/cms';
+import { CMS } from '$lib/pocketbase';
 
 export const load = (async ({ parent }) => {
   let pb = pbClient;
@@ -14,7 +14,7 @@ export const load = (async ({ parent }) => {
 
   return {
     content: {
-      html: getCms(pb, 'about_page')
+      html: CMS(pb, 'about_page')
     }
   };
 }) satisfies PageLoad;
