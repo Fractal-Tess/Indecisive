@@ -11,7 +11,7 @@
 </script>
 
 <navbar
-  class="navbar bg-base-100/50 supports-[backdrop-filter]:bg-background/60 border-primary/50 sticky top-0 z-50 flex h-14 items-center justify-between border-b shadow-lg backdrop-blur">
+  class="navbar border-primary/50 sticky top-0 z-50 flex h-14 items-center justify-between border-b shadow-lg backdrop-blur">
   <a href="/" class="h-12 w-12 md:h-16 md:w-16">
     <Logo class={'h-full object-cover'} />
   </a>
