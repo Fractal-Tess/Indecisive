@@ -9,7 +9,7 @@ dist
 target
 storybook-static
 packages/prisma/docs
-
+.eslintcache
 
 .env
 !.env.example
