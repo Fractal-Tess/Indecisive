@@ -58,7 +58,6 @@
   ];
 
   const user = getContext('user') as ReturnType<typeof createUserStore>;
-  console.log($page.url.pathname);
 </script>
 
 <nav class="text-primary inline-flex gap-x-4 font-bold">

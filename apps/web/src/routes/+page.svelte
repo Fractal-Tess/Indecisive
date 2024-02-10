@@ -1,7 +1,7 @@
 <script lang="ts">
   import Head from '$lib/components/Head.svelte';
-  import Logo from '$lib/components/Logo.svelte';
   import { onMount } from 'svelte';
+  import GlowingImage from '$lib/components/GlowingImage.svelte';
 
   let mounted = false;
   onMount(() => (mounted = true));
@@ -17,6 +17,9 @@
    ${mounted ? 'opacity-100' : 'opacity-0'} `}>
     Welcome to <span class="text-primary font-bold italic"> Indecisive</span>
   </p>
-  <Logo
+  <GlowingImage
+    src="/logo.png"
+    alt="logo"
+    color="--p"
     class={`${mounted ? 'opacity-100' : 'opacity-0'} h-60 md:h-80 lg:h-96`} />
 </section>

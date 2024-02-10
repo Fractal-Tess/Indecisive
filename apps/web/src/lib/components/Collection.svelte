@@ -3,7 +3,7 @@
   export let label = '';
 </script>
 
-<li
+<div
   class="devb relative z-0 aspect-video max-h-72 max-w-sm text-center text-white transition-all duration-500 hover:scale-110 md:max-w-4xl">
   <!-- Bloom effect -->
   <img
@@ -20,4 +20,4 @@
     src={thumbnail}
     alt="expansion"
     class="h-full w-full rounded-lg object-cover" />
-</li>
+</div>

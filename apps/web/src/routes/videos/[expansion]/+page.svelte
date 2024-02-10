@@ -1,9 +1,5 @@
 <script lang="ts">
   import type { PageData } from './$types';
-  import { PUBLIC_POCKETBASE_URL } from '$env/static/public';
-  import { page } from '$app/stores';
-
-  import Image from '$lib/components/Collection.svelte';
   export let data: PageData;
 </script>
 
@@ -11,16 +7,17 @@
   <title>Videos/Expansions</title>
 </svelte:head>
 
-<section
-  class="flex h-full items-center justify-center overflow-hidden text-2xl font-extrabold">
-  <ul class="flex flex-col gap-12 md:flex-row">
-    {#each data.expansion as collection}
-      {@const thumbnail = `${PUBLIC_POCKETBASE_URL}/api/files/${collection.collectionId}/${collection.id}/${collection.thumbnail}?thumb=500x282`}
-      <a href={`${$page.url.href}/${collection.label}`}>
-        <Image {thumbnail} label={collection.label} />
-      </a>
+<section class="my-20 md:my-10 h-full">
+  <ul
+    class="flex flex-col md:flex-row flex-wrap h-full items-center justify-center flex-1 md:grid-cols-2 container mx-auto gap-10 md:gap-20">
+    {#each data.videos as video}
+      <li class="contents">
+        {@html video.ytEmbedCode}
+      </li>
     {:else}
-      <h1>It's rather empty in here</h1>
+      <h1 class="text-primary font-extrabold italic underline text-3xl">
+        It's rather empty in here...
+      </h1>
     {/each}
   </ul>
 </section>

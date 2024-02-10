@@ -1,6 +1,6 @@
 <script lang="ts">
   import { faDiscord } from '@fortawesome/free-brands-svg-icons';
-  import Logo from '$lib/components/Logo.svelte';
+  import GlowImage from '$lib/components/GlowingImage.svelte';
   import { faBarsStaggered, faUser } from '@fortawesome/free-solid-svg-icons';
   import Fa from 'svelte-fa';
   import { getContext } from 'svelte';
@@ -13,7 +13,11 @@
 <navbar
   class="navbar border-primary/50 sticky top-0 z-50 flex h-14 items-center justify-between border-b shadow-lg backdrop-blur">
   <a href="/" class="h-12 w-12 md:h-16 md:w-16">
-    <Logo class={'h-full object-cover'} />
+    <GlowImage
+      alt="logo"
+      src="/logo.png"
+      color="--p"
+      class={'h-full object-cover'} />
   </a>
   <div
     class="max-md:dropdown max-md:dropdown-end max-md:dropdown-hover inline-flex gap-x-2">

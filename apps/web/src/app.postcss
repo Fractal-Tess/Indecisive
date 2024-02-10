@@ -4,19 +4,15 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer base{
-
-  
+@layer base {
   html {
     -webkit-font-smoothing: antialiased;
   }
 
-  body{
+  body {
     @apply heropattern-topography-white/10 h-screen flex flex-col;
   }
 }
-
-
 
 @layer utilities {
   /* Class is used for development purposes only */
@@ -24,5 +20,7 @@
     @apply border-[1px];
   }
 
+  .html-content {
+    @apply [&>h1]:text-3xl [&_p]:flex [&_p]:justify-center [&_p]:items-center;
+  }
 }
-
