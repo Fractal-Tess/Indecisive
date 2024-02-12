@@ -1,7 +1,7 @@
 import type { PBRecord } from '$lib/utils';
 import { getPb, type Fetch } from '$lib/pocketbase';
 
-type ApplicationState = PBRecord<{
+export type ApplicationState = PBRecord<{
   unit: string;
   label: string;
   enabled: boolean;

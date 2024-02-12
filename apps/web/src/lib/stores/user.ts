@@ -1,7 +1,7 @@
 import { writable } from 'svelte/store';
 import { redirect } from '@sveltejs/kit';
 import { pb } from '$lib/pocketbase/pocketbase';
-import type { Record } from 'pocketbase';
+import type { RecordModel } from 'pocketbase';
 
 export type User = {
   username: string;
@@ -34,7 +34,7 @@ export const createUserStore = () => {
           if (!authData.meta) throw new Error('Discord oAuth2 failed');
           const user = await pb
             .collection('users')
-            .update<User & Record>(authData.record.id, {
+            .update<User & RecordModel>(authData.record.id, {
               accessToken: authData.meta.accessToken,
               avatarUrl: authData.meta.avatarUrl,
               refreshToken: authData.meta.refreshToken,
